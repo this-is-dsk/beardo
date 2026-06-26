@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0f0f0f] text-white font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#cc0000] text-white font-semibold py-3 px-6 rounded hover:bg-[#aa0000] transition-colors duration-300;
+  }
+}
+
+/* Custom Swiper Styles */
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.5 !important;
+}
+.swiper-pagination-bullet-active {
+  background: #cc0000 !important;
+  opacity: 1 !important;
+}
+
+/* Custom Horizontal Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #1a1a1a;
+}
