@@ -21,7 +21,7 @@ useEffect(() => {
     try {
 
       const res = await fetch(
-        "http://localhost:5000/api/admin/dashboard"
+        "https://beardo-e8n0.onrender.com/api/admin/dashboard"
       );
 
       const data = await res.json();
@@ -41,7 +41,7 @@ useEffect(() => {
     try {
 
       const res = await fetch(
-        "http://localhost:5000/api/admin/recent-orders"
+        "https://beardo-e8n0.onrender.com/api/admin/recent-orders"
       );
 
       const data = await res.json();
@@ -195,7 +195,7 @@ useEffect(() => {
     try {
 
       const res = await fetch(
-        `http://localhost:5000/api/admin/order/${order._id}`,
+        `https://beardo-e8n0.onrender.com/api/admin/order/${order._id}`,
         {
           method: "PUT",
           headers: {

@@ -13,7 +13,7 @@ const MyOrders = () => {
 
     if (!user) return;
 
-    fetch(`http://localhost:5000/api/orders/user/${user._id}`)
+    fetch(`https://beardo-e8n0.onrender.com/api/orders/user/${user._id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {

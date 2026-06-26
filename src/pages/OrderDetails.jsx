@@ -9,7 +9,7 @@ const OrderDetails = () => {
 
   useEffect(() => {
 
-    fetch(`http://localhost:5000/api/orders/${id}`)
+    fetch(`https://beardo-e8n0.onrender.com/api/orders/${id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
