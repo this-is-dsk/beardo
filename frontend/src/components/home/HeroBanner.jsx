@@ -54,7 +54,7 @@ const slides = [
 
 export const HeroBanner = () => {
   return (
-    <div className="relative w-full h-[45vh] md:h-[65vh] bg-[#0a0a0a] overflow-hidden">
+    <div className="relative w-full h-[490px] md:h-[82vh] bg-white overflow-hidden px-0 md:px-4 md:pt-4">
       <Swiper
   modules={[Autoplay, Pagination]}
   allowTouchMove={true}
@@ -76,7 +76,7 @@ export const HeroBanner = () => {
 >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative w-full h-full flex flex-col justify-end pb-12 md:pb-0 md:justify-center">
+            <div className="relative w-full h-full flex flex-col justify-end pb-8 md:pb-0 md:justify-center overflow-hidden md:rounded-[18px]">
               
               {/* Z-0: Background Image Layer */}
               <picture className="absolute inset-0 z-0">
@@ -85,22 +85,24 @@ export const HeroBanner = () => {
                 <img 
                   src={slide.imageDesktop} 
                   alt={slide.heading.replace(/<[^>]+>/g, '')}
-                  className="w-full h-full object-cover md:object-center object-[70%_center]"
+                  className="w-full h-full object-cover md:object-center object-[70%]"
                 />
               </picture>
               
               {/* Z-10: Overlay Layer (Gradient for text readability) */}
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+              <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/25
+via-transparent
+to-transparent"></div>
 
               {/* Z-20: Text Content Layer */}
-              <div className="relative z-20 container mx-auto px-6 lg:px-12 flex flex-col justify-center w-full md:w-[60%]">
+              <div className="relative z-20 w-full md:w-[38%] flex flex-col justify-end md:justify-center px-8 pb-16 md:pb-0 md:px-12">
                 {slide.title && (
                   <span className="inline-block bg-white text-[#cc0000] font-bold tracking-wider text-[10px] md:text-sm uppercase px-3 py-1 md:px-4 md:py-1.5 rounded-full mb-4 w-max shadow-sm">
                     {slide.title}
                   </span>
                 )}
                 
-                <h1 className="text-3xl md:text-[3.5rem] lg:text-[4.5rem] font-extrabold text-white mb-6 leading-[1.1] whitespace-pre-line tracking-tight uppercase">
+                <h1 className="text-[26px] md:text-[58px] lg:text-[64px] font-extrabold text-white mb-5 leading-[1.0] whitespace-pre-line tracking-tight uppercase">
                   {slide.heading}
                 </h1>
 
@@ -109,13 +111,13 @@ export const HeroBanner = () => {
   {slide.link ? (
   <Link
     to={slide.link}
-    className="bg-[#cc0000] hover:bg-[#aa0000] text-white font-extrabold py-3 px-8 md:py-3.5 md:px-10 text-sm md:text-base uppercase tracking-wider transition-colors rounded-md shadow-lg shadow-[#cc0000]/20 w-max inline-block"
+    className="bg-[#cc0000] hover:bg-[#aa0000] text-white font-extrabold py-4 px-12 md:py-3.5 md:px-10 text-sm md:text-base uppercase tracking-wider transition-colors rounded-lg shadow-lg shadow-[#cc0000]/20 w-max inline-block"
   >
     {slide.buttonText}
   </Link>
 ) : (
   <button
-    className="bg-[#cc0000] hover:bg-[#aa0000] text-white font-extrabold py-3 px-8 md:py-3.5 md:px-10 text-sm md:text-base uppercase tracking-wider transition-colors rounded-md shadow-lg shadow-[#cc0000]/20 w-max"
+    className="bg-[#cc0000] hover:bg-[#aa0000] text-white font-extrabold py-4 px-10 md:py-3.5 md:px-10 text-sm md:text-base uppercase tracking-wider transition-colors rounded-md shadow-lg shadow-[#cc0000]/20 w-max"
   >
     {slide.buttonText}
   </button>
@@ -129,24 +131,27 @@ export const HeroBanner = () => {
         ))}
       </Swiper>
       <style dangerouslySetInnerHTML={{__html: `
-        .hero-swiper .swiper-pagination {
-          bottom: 15px !important;
-        }
-        .hero-swiper .custom-dot {
-          width: 6px;
-          height: 6px;
-          background: #666;
-          opacity: 1;
-          display: inline-block;
-          border-radius: 50%;
-          margin: 0 4px !important;
-          transition: all 0.3s ease;
-        }
-        .hero-swiper .swiper-pagination-bullet-active.custom-dot {
-          background: #cc0000;
-          width: 8px;
-          height: 8px;
-        }
+        .hero-swiper .swiper-pagination{
+bottom:28px!important;
+}
+
+.hero-swiper .swiper-pagination-bullet{
+
+width:8px;
+height:16px;
+background:white;
+opacity:.5;
+margin:0 4px!important;
+
+}
+
+.hero-swiper .swiper-pagination-bullet-active{
+
+background:#fff;
+opacity:1;
+transform:scale(1.2);
+
+}
       `}} />
     </div>
   );

@@ -50,9 +50,9 @@ bg-[#cc0000]
 text-white
 text-xs
 font-semibold
-tracking-[0.15em]
+tracking-wide
 uppercase
-py-2
+py-1.5
 text-center
 ">
   <span>☀️ Summer's Ending, Savings Aren't! B2G2 FREE</span>
@@ -60,19 +60,20 @@ text-center
       <header 
         className={`sticky top-0 z-40 transition-all duration-500 ease-in-out ${
           isScrolled
-? 'bg-black/90 backdrop-blur-xl border-b border-[#222] shadow-2xl'
-: 'bg-black/20 backdrop-blur-sm'
+? 'bg-white border-b border-gray-200 shadow-sm'
+: 'bg-white border-b border-gray-200'
         }`}
       >
-        <div className="container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto
+px-4 lg:px-8 h-[64px] flex items-center justify-between">
           
           {/* Left: Mobile Menu (Mobile) / Nav Links (Desktop) */}
           <div className="flex items-center lg:w-1/3">
             <button 
-              className="lg:hidden text-white hover:text-[#cc0000] transition-colors"
+              className="lg:hidden text-black hover:text-[#cc0000] transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
             >
-              <FiMenu size={26} />
+             <FiMenu size={30} strokeWidth={1.8} />
             </button>
 
             {/* Desktop Navigation */}
@@ -81,7 +82,7 @@ text-center
                 <Link 
                   key={link.name} 
                   to={link.path}
-                  className="group relative text-white font-semibold text-[13px] tracking-[0.18em] uppercase transition-colors"
+                  className="group relative text-black font-semibold text-[13px] tracking-[0.18em] uppercase transition-colors"
                 >
                   <span className="group-hover:text-[#cc0000] transition-colors duration-300">
                     {link.name}
@@ -99,7 +100,7 @@ text-center
             <img
   src="/images/logo.webp"
   alt="BEARDO"
-  className="h-10 md:h-12 object-contain"
+  className="h-12 md:h-14 object-contain"
 />
               
             </Link>
@@ -111,53 +112,46 @@ text-center
             <div className="hidden lg:flex items-center relative group">
               <input 
                 type="text" 
-                placeholder="Search..." 
+                placeholder="Search for Beard Oil"
                 value={searchTerm}
 onChange={(e) => setSearchTerm(e.target.value)}
 onKeyDown={handleSearch}
                 className="
-bg-[#181818]
-border border-[#2a2a2a]
-rounded-full
-py-3
-px-4
-pl-12
-text-sm
-text-white
-focus:border-[#cc0000]
-focus:shadow-[0_0_20px_rgba(204,0,0,0.25)]
+bg-white
+border border-gray-300
+rounded-md
+h-12
+w-[320px]
+pl-11
+pr-4
+text-black
+placeholder:text-gray-500
+focus:border-black
+outline-none
 transition-all
 "
               />
-              <FiSearch className="absolute left-4 text-gray-400 group-focus-within:text-[#cc0000] transition-colors" size={18} />
+              <FiSearch className="absolute left-4 text-gray-500 group-focus-within:text-[#cc0000] transition-colors" size={18} />
             </div>
-
-            {/* Mobile Search Icon */}
-            <button 
-              className="lg:hidden w-10 h-10 rounded-full bg-transparent flex items-center justify-center text-white hover:text-[#cc0000] hover:bg-[#1a1a1a] transition-all duration-300"
-              onClick={() => setShowSearch(!showSearch)}
-            >
-              <FiSearch size={22} />
-            </button>
 
             {/* Action Icons */}
             <div className="flex items-center gap-2">
               <button 
-                className="w-10 h-10 rounded-full bg-[#1a1a1a]/50 hover:bg-[#cc0000] text-white flex items-center justify-center hover:scale-110 hover:shadow-[0_0_15px_rgba(204,0,0,0.4)] transition-all duration-300 hidden sm:flex"
+                className="w-10 h-10 rounded-full bg-transparent  text-black flex items-center justify-center hover:text-black transition-all duration-300 hidden sm:flex"
                 onClick={() => setIsAccountPanelOpen(true)}
               >
                 <FiUser size={18} />
               </button>
               
-              <button className="w-10 h-10 rounded-full bg-[#1a1a1a]/50 hover:bg-[#cc0000] text-white flex items-center justify-center hover:scale-110 hover:shadow-[0_0_15px_rgba(204,0,0,0.4)] transition-all duration-300 hidden md:flex">
+              <button className="w-10 h-10 rounded-full bg-transparent  text-black flex items-center justify-center hover:text-black transition-all duration-300 hidden md:flex">
                 <FiHeart size={18} />
               </button>
 
               <button 
-                className="w-10 h-10 rounded-full bg-[#1a1a1a]/50 hover:bg-[#cc0000] text-white flex items-center justify-center hover:scale-110 hover:shadow-[0_0_15px_rgba(204,0,0,0.4)] transition-all duration-300 relative"
+                className="w-10 h-10 rounded-full bg-transparent text-black flex items-center justify-center hover:text-black transition-all duration-300 relative"
                 onClick={() => setIsCartOpen(true)}
               >
-                <FiShoppingCart size={18} />
+                <FiShoppingCart size={22} />
                 <AnimatePresence>
                   {getCartCount() > 0 && (
                     <motion.span 
@@ -174,39 +168,37 @@ transition-all
 
               {/* Mobile Account Icon (since sm is hidden) */}
               <button 
-                className="w-10 h-10 rounded-full bg-transparent text-white flex items-center justify-center hover:text-[#cc0000] transition-colors sm:hidden"
+                className="w-10 h-10 rounded-full bg-transparent text-black flex items-center justify-center hover:text-[#cc0000] transition-colors sm:hidden"
                 onClick={() => setIsAccountPanelOpen(true)}
               >
-                <FiUser size={22} />
+                <FiUser size={26} />
               </button>
             </div>
           </div>
         </div>
 
         {/* Mobile Search Row Expandable */}
-        <AnimatePresence>
-          {showSearch && (
-            <motion.div 
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="lg:hidden bg-[#0a0a0a]/95 backdrop-blur-md border-b border-gray-800 overflow-hidden"
-            >
-              <div className="px-4 py-4 flex items-center relative">
-                <FiSearch className="absolute left-8 text-gray-400" size={18} />
-                <input 
-                  type="text" 
-                  placeholder="Search for premium grooming..." 
-                  value={searchTerm}
-onChange={(e) => setSearchTerm(e.target.value)}
+        <div className="lg:hidden bg-white px-3 pb-4">
+
+<div className="relative">
+
+<FiSearch
+className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+size={22}
+/>
+
+<input
+type="text"
+placeholder="Search for Beard Oil"
+value={searchTerm}
+onChange={(e)=>setSearchTerm(e.target.value)}
 onKeyDown={handleSearch}
-                  className="w-full bg-[#1a1a1a] rounded-full py-3 px-4 pl-12 text-sm text-white focus:outline-none focus:border-[#cc0000] focus:ring-1 focus:ring-[#cc0000] border border-gray-800 transition-all placeholder-gray-500"
-                  autoFocus
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+className="w-full h-[52px] rounded-md border border-gray-300 bg-white pl-14 pr-4 text-black text-base outline-none"
+/>
+
+</div>
+
+</div>
       </header>
 
       {/* Side Menus */}

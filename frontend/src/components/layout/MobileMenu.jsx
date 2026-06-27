@@ -30,12 +30,12 @@ export const MobileMenu = ({ isOpen, onClose }) => {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="relative w-[85%] max-w-sm h-full bg-[#111111] border-r border-[#222] flex flex-col overflow-hidden"
+            className="relative w-[85%] max-w-sm h-full bg-white border-r border-gray-200 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-[#222]">
-              <span className="text-white font-bold text-xl tracking-widest uppercase">BEARDO</span>
-              <button onClick={onClose} className="text-gray-400 hover:text-white p-2">
+            <div className="flex items-center justify-between p-5 border-b border-gray-200">
+              <span className="text-black font-bold text-xl tracking-widest uppercase">BEARDO</span>
+              <button onClick={onClose} className="text-gray-500 hover:text-black p-2">
                 <IoClose size={24} />
               </button>
             </div>
@@ -45,10 +45,10 @@ export const MobileMenu = ({ isOpen, onClose }) => {
               
               {/* Accordion Menu */}
               <div className="flex flex-col">
-                <div className="border-b border-[#222]">
+                <div className="border-b border-gray-200">
                   <button 
                     onClick={() => toggleCategory('products')}
-                    className="w-full flex items-center justify-between p-4 text-white hover:text-[#cc0000] transition-colors"
+                    className="w-full flex items-center justify-between p-4 text-gray-900 hover:text-[#cc0000] transition-colors"
                   >
                     <span className="font-semibold uppercase tracking-wider text-sm">Products</span>
                     {expandedCategory === 'products' ? <IoChevronUp size={20} /> : <IoChevronDown size={20} />}
@@ -60,7 +60,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden bg-[#0a0a0a]"
+                        className="overflow-hidden bg-[#fafafa]"
                       >
                         <div className="flex flex-col py-2 px-4">
                           {menuCategories.map(cat => (
@@ -72,12 +72,12 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                                     key={item.id} 
                                     to={`/category/${cat.id}`}
                                     onClick={onClose}
-                                    className="flex items-center gap-2 p-2 bg-[#1a1a1a] rounded hover:bg-[#222] transition-colors"
+                                    className="flex items-center gap-2 p-2 bg-white border border-gray-200 rounded hover:bg-gray-100 transition-colors"
                                   >
                                     <div className="w-8 h-8 rounded-full overflow-hidden bg-black flex-shrink-0">
                                       <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                     </div>
-                                    <span className="text-xs text-white font-medium">{item.name}</span>
+                                    <span className="text-xs text-gray-800 font-medium">{item.name}</span>
                                   </Link>
                                 ))}
                               </div>
@@ -101,7 +101,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                     key={link.name}
                     to={link.path}
                     onClick={onClose}
-                    className="flex items-center justify-between p-4 border-b border-[#222] text-white hover:text-[#cc0000] transition-colors"
+                    className="flex items-center justify-between p-4 border-b border-gray-200 text-gray-900 hover:text-[#cc0000] transition-colors"
                   >
                     <span className="font-semibold uppercase tracking-wider text-sm">{link.name}</span>
                     <IoChevronForward className="text-gray-500" />
@@ -115,7 +115,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   <Link 
                     key={link}
                     to="#"
-                    className="text-gray-400 hover:text-white text-xs font-medium transition-colors"
+                    className="text-gray-500 hover:text-black text-xs font-medium transition-colors "
                   >
                     {link}
                   </Link>
@@ -124,11 +124,11 @@ export const MobileMenu = ({ isOpen, onClose }) => {
             </div>
 
             {/* Sticky Bottom CTA */}
-            <div className="absolute bottom-0 left-0 w-full p-4 bg-[#111111] border-t border-[#222]">
+            <div className="absolute bottom-0 left-0 w-full p-4 bg-white border-t border-gray-200">
               <Link 
                 to="/shop-all" 
                 onClick={onClose}
-                className="flex items-center justify-center w-full py-3 bg-[#cc0000] hover:bg-[#aa0000] text-white font-bold text-sm tracking-wider uppercase transition-colors rounded-sm"
+                className="flex items-center justify-center w-full py-3 bg-[#cc0000] hover:bg-[#aa0000] text-white font-bold text-sm tracking-wider uppercase transition-colors rounded-xl"
               >
                 Shop All Products
               </Link>
