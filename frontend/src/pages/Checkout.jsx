@@ -130,7 +130,7 @@ console.log(data);
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl min-h-screen">
-      <h1 className="text-3xl font-bold uppercase tracking-widest mb-8 border-b border-gray-800 pb-4 text-white">
+      <h1 className="text-3xl font-bold uppercase tracking-widest mb-8 border-b border-gray-800 pb-4 text-black">
         Checkout
       </h1>
       <div className="flex items-center justify-center mb-10">
@@ -146,7 +146,7 @@ console.log(data);
     <div className="w-16 h-[2px] bg-gray-700"></div>
 
     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-      step >= 2 ? 'bg-[#cc0000] text-white' : 'bg-[#222] text-gray-500'
+      step >= 2 ? 'bg-[#cc0000] text-black' : 'bg-[#222] text-gray-500'
     }`}>
       2
     </div>
@@ -161,12 +161,12 @@ console.log(data);
 
 </div>
 
-<div className="flex justify-center gap-12 mb-10 text-sm text-gray-400">
-  <span className={step >= 1 ? "text-white" : ""}>
+<div className="flex justify-center gap-12 mb-10 text-md text-black">
+  <span className={step >= 1 ? "text-black " : ""}>
     Shipping
   </span>
 
-  <span className={step >= 2 ? "text-white" : ""}>
+  <span className={step >= 2 ? "text-black " : ""}>
     Payment
   </span>
 
@@ -323,11 +323,11 @@ console.log(data);
               </div>
               
               <div className="space-y-3 text-sm border-t border-gray-800 pt-4 mb-4">
-                <div className="flex justify-between text-gray-400">
+                <div className="flex justify-between text-white">
                   <span>Subtotal</span>
                   <span className="text-white">₹{getCartTotal()}</span>
                 </div>
-                <div className="flex justify-between text-gray-400">
+                <div className="flex justify-between text-white">
                   <span>Shipping</span>
                   <span className="text-[#00cc00]">FREE</span>
                 </div>

@@ -142,7 +142,7 @@ const finalTotal = subtotal - discount;
               <div className="p-6 border-t border-gray-800 bg-[#0a0a0a]">
                 <div className="space-y-2 mb-4">
 
-  <div className="flex justify-between">
+  <div className="flex justify-between text-white">
     <span>Subtotal</span>
     <span>₹{subtotal}</span>
   </div>
@@ -154,7 +154,7 @@ const finalTotal = subtotal - discount;
     </div>
   )}
 
-  <div className="flex justify-between text-lg font-bold border-t border-gray-800 pt-2">
+  <div className="flex justify-between text-lg font-bold border-t border-gray-800 pt-2 text-white">
     <span>Total</span>
     <span className="text-[#cc0000]">
       ₹{finalTotal}
