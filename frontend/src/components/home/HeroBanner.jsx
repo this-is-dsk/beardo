@@ -54,7 +54,7 @@ const slides = [
 
 export const HeroBanner = () => {
   return (
-    <div className="relative w-full h-[490px] md:h-[82vh] bg-white overflow-hidden px-0 md:px-4 md:pt-4">
+    <div className="relative w-full h-[430px] md:h-[82vh] bg-white overflow-hidden">
       <Swiper
   modules={[Autoplay, Pagination]}
   allowTouchMove={true}
@@ -85,24 +85,36 @@ export const HeroBanner = () => {
                 <img 
                   src={slide.imageDesktop} 
                   alt={slide.heading.replace(/<[^>]+>/g, '')}
-                  className="w-full h-full object-cover md:object-center object-[70%]"
+                  className="w-full h-full object-cover object-[76%_center] md:object-center"
                 />
               </picture>
               
               {/* Z-10: Overlay Layer (Gradient for text readability) */}
-              <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/25
+              <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/10
 via-transparent
 to-transparent"></div>
 
               {/* Z-20: Text Content Layer */}
-              <div className="relative z-20 w-full md:w-[38%] flex flex-col justify-end md:justify-center px-8 pb-16 md:pb-0 md:px-12">
+              <div className="
+relative
+z-20
+w-full
+md:w-[36%]
+flex
+flex-col
+justify-end
+md:justify-center
+px-8
+pb-12
+md:px-16
+">
                 {slide.title && (
                   <span className="inline-block bg-white text-[#cc0000] font-bold tracking-wider text-[10px] md:text-sm uppercase px-3 py-1 md:px-4 md:py-1.5 rounded-full mb-4 w-max shadow-sm">
                     {slide.title}
                   </span>
                 )}
                 
-                <h1 className="text-[26px] md:text-[58px] lg:text-[64px] font-extrabold text-white mb-5 leading-[1.0] whitespace-pre-line tracking-tight uppercase">
+                <h1 className="text-[22px] md:text-[58px] lg:text-[64px] font-extrabold text-white mb-5 leading-[1.0] whitespace-pre-line tracking-tight uppercase">
                   {slide.heading}
                 </h1>
 
@@ -132,24 +144,32 @@ to-transparent"></div>
       </Swiper>
       <style dangerouslySetInnerHTML={{__html: `
         .hero-swiper .swiper-pagination{
-bottom:28px!important;
+
+bottom:18px!important;
+
 }
 
 .hero-swiper .swiper-pagination-bullet{
 
-width:8px;
-height:16px;
-background:white;
-opacity:.5;
-margin:0 4px!important;
+width:10px;
+
+height:10px;
+
+border-radius:999px;
+
+background:#d3d3d3;
+
+opacity:1;
+
+margin:0 5px!important;
+
+transition:.3s;
 
 }
 
 .hero-swiper .swiper-pagination-bullet-active{
 
-background:#fff;
-opacity:1;
-transform:scale(1.2);
+background:white;
 
 }
       `}} />

@@ -65,7 +65,7 @@ text-center
         }`}
       >
         <div className="max-w-[1400px] mx-auto
-px-4 lg:px-8 h-[64px] flex items-center justify-between">
+px-4 lg:px-8 h-[58px] flex items-center justify-between">
           
           {/* Left: Mobile Menu (Mobile) / Nav Links (Desktop) */}
           <div className="flex items-center lg:w-1/3">
@@ -73,7 +73,7 @@ px-4 lg:px-8 h-[64px] flex items-center justify-between">
               className="lg:hidden text-black hover:text-[#cc0000] transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
             >
-             <FiMenu size={30} strokeWidth={1.8} />
+             <FiMenu size={34} strokeWidth={1.3} />
             </button>
 
             {/* Desktop Navigation */}
@@ -96,11 +96,11 @@ px-4 lg:px-8 h-[64px] flex items-center justify-between">
 
           {/* Center: Premium Logo */}
           <div className="flex-shrink-0 flex items-center justify-center lg:w-1/3 absolute left-1/2 -translate-x-1/2 lg:static lg:transform-none">
-            <Link to="/" className="flex items-center gap-2 group">
+            <Link to="/" className="flex items-center gap-5 group">
             <img
   src="/images/logo.webp"
   alt="BEARDO"
-  className="h-12 md:h-14 object-contain"
+  className="h-[42px] w-auto object-contain"
 />
               
             </Link>
@@ -144,14 +144,14 @@ transition-all
               </button>
               
               <button className="w-10 h-10 rounded-full bg-transparent  text-black flex items-center justify-center hover:text-black transition-all duration-300 hidden md:flex">
-                <FiHeart size={18} />
+                <FiHeart size={31} />
               </button>
 
               <button 
                 className="w-10 h-10 rounded-full bg-transparent text-black flex items-center justify-center hover:text-black transition-all duration-300 relative"
                 onClick={() => setIsCartOpen(true)}
               >
-                <FiShoppingCart size={22} />
+                <FiShoppingCart size={30} />
                 <AnimatePresence>
                   {getCartCount() > 0 && (
                     <motion.span 
@@ -171,7 +171,7 @@ transition-all
                 className="w-10 h-10 rounded-full bg-transparent text-black flex items-center justify-center hover:text-[#cc0000] transition-colors sm:hidden"
                 onClick={() => setIsAccountPanelOpen(true)}
               >
-                <FiUser size={26} />
+                <FiUser size={30} />
               </button>
             </div>
           </div>
@@ -183,8 +183,8 @@ transition-all
 <div className="relative">
 
 <FiSearch
-className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
-size={22}
+className="absolute left-[18px] top-1/2 -translate-y-1/2 text-gray-500"
+size={31}
 />
 
 <input
@@ -193,7 +193,20 @@ placeholder="Search for Beard Oil"
 value={searchTerm}
 onChange={(e)=>setSearchTerm(e.target.value)}
 onKeyDown={handleSearch}
-className="w-full h-[52px] rounded-md border border-gray-300 bg-white pl-14 pr-4 text-black text-base outline-none"
+className="
+w-full
+h-[56px]
+rounded-[10px]
+border
+border-[#d9d9d9]
+bg-white
+pl-[58px]
+pr-4
+text-[17px]
+font-normal
+outline-none
+placeholder:text-[#8d8d8d]
+"
 />
 
 </div>
