@@ -25,14 +25,14 @@ export const ProductCard = ({ product }) => {
 
   return (
     <motion.div 
-      className="group relative flex flex-col bg-[#111111] border border-[#1f1f1f] rounded-xl overflow-hidden"
+      className="group relative flex flex-col bg-white border border-[#dcdcdc] rounded-[8px] overflow-hidden shadow-sm"
       whileHover={{ y: -4, boxShadow: '0 10px 20px -5px rgba(0,0,0,0.5)' }}
       transition={{ duration: 0.2 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Product Image */}
-      <div className="relative aspect-[4/5] bg-[#1a1a1a] overflow-hidden cursor-pointer">
+      <div className="relative h-[175px] md:h-[240px] bg-[#efefef] overflow-hidden cursor-pointer">
         {isDealOfDay && (
           <div className="absolute top-2 left-2 z-10">
             <Badge variant="deal">DEAL OF THE DAY</Badge>
@@ -46,21 +46,21 @@ export const ProductCard = ({ product }) => {
       </div>
 
       {/* Product Details */}
-      <div className="p-3 flex flex-col flex-grow">
-        <h3 className="text-white font-semibold text-[15px] leading-snug mb-1.5 line-clamp-2 cursor-pointer hover:text-[#cc0000] transition-colors">
+      <div className="px-2.5 pt-2 pb-2 flex flex-col flex-grow">
+        <h3 className="text-[#111] font-semibold text-[13px] leading-[18px] mb-1 line-clamp-2">
           {title}
         </h3>
         
-        <div className="flex items-center space-x-1.5 text-xs text-gray-400 mb-2.5">
-          <FaStar className="text-white" size={12} />
-          <span className="text-white font-medium">{rating}</span>
+        <div className="flex items-center gap-1 text-[10px] text-[#666] mb-1.5">
+          <FaStar className="text-black" size={10} />
+          <span className="text-black font-semibold">{rating}</span>
           <span>|</span>
           <span>{reviewsCount} reviews</span>
         </div>
         
         <div className="mt-auto">
-          <div className="flex items-center space-x-2 mb-3">
-            <span className="text-[17px] font-bold text-white">₹{price}</span>
+          <div className="flex items-center gap-1 mb-2">
+            <span className="text-[18px] font-bold text-[#111]">₹{price}</span>
             {originalPrice && (
               <span className="text-xs text-gray-500 line-through">₹{originalPrice}</span>
             )}
@@ -71,7 +71,7 @@ export const ProductCard = ({ product }) => {
           
           <button 
             onClick={() => requireAuth(() => addToCart(product))}
-            className="w-full py-2.5 bg-[#cc0000] hover:bg-[#aa0000] text-white font-bold text-sm tracking-wider uppercase transition-colors duration-300 rounded-md"
+            className="w-full h-[36px] bg-[#e30613] hover:bg-[#c50011] text-white font-bold text-[12px] uppercase rounded-[4px]"
           >
             Add to Cart
           </button>

@@ -54,7 +54,7 @@ const slides = [
 
 export const HeroBanner = () => {
   return (
-    <div className="relative w-full h-[430px] md:h-[82vh] bg-white overflow-hidden">
+    <div className="relative w-full h-[398px] md:h-[82vh] bg-white overflow-hidden">
       <Swiper
   modules={[Autoplay, Pagination]}
   allowTouchMove={true}
@@ -105,7 +105,7 @@ flex-col
 justify-end
 md:justify-center
 px-8
-pb-12
+pb-10
 md:px-16
 ">
                 {slide.title && (

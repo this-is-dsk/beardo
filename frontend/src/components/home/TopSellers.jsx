@@ -25,7 +25,7 @@ export const TopSellers = () => {
   }, [activeTab]);
 
   return (
-    <section className="py-16 bg-[#0f0f0f]">
+    <section className="py-16 bg-black">
       <div className="container mx-auto px-4 lg:px-8">
         <SectionHeading 
           title="Top Sellers & New Arrivals"

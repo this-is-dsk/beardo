@@ -20,7 +20,7 @@ export default function Home() {
       <WhyChooseUs />
       
       {/* Video Banner Placeholder */}
-      <section className="relative w-full h-[60vh] bg-black overflow-hidden flex items-center justify-center">
+      <section className="relative w-full h-[60vh] bg-white overflow-hidden flex items-center justify-center">
          {/* Muted background video would go here */}
          <div className="absolute inset-0 bg-[#0a0a0a] bg-opacity-60 flex flex-col items-center justify-center z-10 text-center px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 uppercase tracking-wider">Unleash Your Vibe</h2>
@@ -34,7 +34,7 @@ export default function Home() {
       <CustomerReviews />
 
       {/* Instagram Feed Placeholder */}
-      <section className="py-16 bg-[#0f0f0f]">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
            <div className="mb-10">
   <img

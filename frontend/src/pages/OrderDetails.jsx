@@ -29,7 +29,7 @@ const OrderDetails = () => {
   }
   return (
 
-    <div className="min-h-screen bg-[#0f0f0f] py-10">
+    <div className="min-h-screen bg-white py-10">
 
       <div className="container mx-auto max-w-6xl px-4">
 

@@ -3,26 +3,26 @@ import { Link } from 'react-router-dom';
 
 export const FragrancePromo = () => {
   return (
-    <section className="py-12 bg-[#0a0a0a]">
+    <section className="py-8 md:py-12 bg-[#efefef]">
       <div className="container mx-auto px-4 lg:px-8">
         <Link 
           to="/collections/perfumes" 
-          className="block relative bg-[#111] rounded-2xl overflow-hidden border border-[#222] hover:border-[#444] transition-all group"
+          className="block relative bg-white rounded-[8px] md:rounded-2xl overflow-hidden border border-[#dcdcdc] transition-all group"
         >
           {/* Background Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-black"></div>
+          <div className="absolute inset-0 bg-white"></div>
           
           <div className="relative flex flex-col md:flex-row items-center h-full">
             
             {/* Text Content */}
-            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center items-center md:items-start text-center md:text-left z-10 order-2 md:order-1">
-              <span className="text-gray-400 font-semibold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-3">
-                Complete Grooming Solution
+            <div className="w-full md:w-1/2 p-4 md:p-12 flex flex-col justify-center items-center md:items-start text-center md:text-left z-10 order-2 md:order-1">
+              <span className="text-[#7a7a7a] font-semibold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-3">
+                Refined blends for a signature scent that stands out.
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 uppercase tracking-tight leading-none">
+              <h2 className="text-[24px] md:text-5xl font-extrabold text-[#111] mb-6 uppercase tracking-tight leading-none">
                 Luxury<br className="hidden md:block" /> Fragrances
               </h2>
-              <button className="bg-[#cc0000] hover:bg-[#aa0000] text-white font-bold py-3 px-8 text-sm uppercase tracking-wider transition-colors rounded-sm shadow-lg shadow-[#cc0000]/20">
+              <button className="bg-[#cc0000] hover:bg-[#aa0000] text-white font-bold py-2 px-5 text-sm uppercase tracking-wider transition-colors rounded-sm shadow-lg shadow-[#cc0000]/20">
                 Shop Now
               </button>
             </div>

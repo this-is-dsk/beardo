@@ -7,7 +7,6 @@ export const ExploreCollections = () => {
   const scrollContainerRef = useRef(null);
 
   const tabs = [
-    { id: 'Trimmers', label: 'TRIMMERS' },
     { id: 'Face', label: 'FACE' },
     { id: 'Hair', label: 'HAIR' },
     { id: 'Body', label: 'BODY' },
@@ -31,10 +30,10 @@ export const ExploreCollections = () => {
   }, [activeTab]);
 
   return (
-    <section className="py-16 bg-[#0f0f0f]">
+    <section className="py-8 md:py-16 bg-[#efefef]">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex flex-col items-center justify-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 uppercase tracking-wider text-center">
+          <h2 className="text-[28px] md:text-3xl font-bold text-[#111] mb-4 uppercase tracking-wider text-center">
             Explore More Collections
           </h2>
           
@@ -45,8 +44,8 @@ export const ExploreCollections = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 py-2 border whitespace-nowrap text-[13px] font-semibold uppercase tracking-wider transition-colors duration-300 rounded-sm flex-shrink-0 ${
                   activeTab === tab.id 
-                    ? 'bg-white text-black border-white' 
-                    : 'bg-[#111] text-gray-300 hover:bg-[#222] border-[#333]'
+                    ? 'bg-[#111] text-white border-[#111]' 
+                    : 'bg-white text-[#666] border-[#ddd]'
                 }`}
               >
                 {tab.label}
@@ -61,7 +60,7 @@ export const ExploreCollections = () => {
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {displayProducts.map((product, index) => (
-            <div key={`${product.id}-${index}`} className="w-[160px] md:w-[240px] snap-start flex-shrink-0">
+            <div key={`${product.id}-${index}`} className="w-[150px] md:w-[240px] snap-start flex-shrink-0">
               <ProductCard product={product} />
             </div>
           ))}

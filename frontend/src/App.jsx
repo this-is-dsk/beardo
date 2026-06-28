@@ -31,7 +31,7 @@ function App() {
         <WishlistProvider>
           <Router>
             <ScrollToTop />
-            <div className="min-h-screen bg-[#0f0f0f] text-white">
+            <div className="min-h-screen bg-[#f3f3f3] text-[#111]">
               <MainLayout>
                 <Routes>
                   <Route path="/" element={<Home />} />

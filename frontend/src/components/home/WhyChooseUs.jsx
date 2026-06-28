@@ -42,7 +42,7 @@ export const WhyChooseUs = () => {
           {features.map((feature) => (
             <div 
               key={feature.id} 
-              className="relative bg-[#0f0f0f] border border-gray-800 rounded-xl p-8 flex flex-col items-center text-center overflow-hidden group hover:border-gray-600 transition-colors duration-300"
+              className="relative bg-black border border-gray-800 rounded-xl p-8 flex flex-col items-center text-center overflow-hidden group hover:border-gray-600 transition-colors duration-300"
             >
               {/* Red Corner Accent */}
               <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-[#cc0000] rotate-45 transform origin-center opacity-80 group-hover:scale-110 transition-transform duration-300"></div>

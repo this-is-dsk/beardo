@@ -76,7 +76,7 @@ useEffect(() => {
   // Only Admin Allowed
   if (user.role !== 'admin') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f]">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <h1 className="text-2xl text-red-500 font-bold">
           Access Denied
         </h1>
@@ -85,7 +85,7 @@ useEffect(() => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f]">
+    <div className="min-h-screen bg-white">
 
       {/* Header */}
       <div className="bg-[#181818] border-b border-[#333] px-8 py-5">

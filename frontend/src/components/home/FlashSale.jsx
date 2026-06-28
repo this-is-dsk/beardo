@@ -41,30 +41,30 @@ export const FlashSale = () => {
   const flashSaleProducts = dummyProducts.filter(product => product.isDealOfDay);
 
   const TimeBox = ({ value, label }) => (
-    <div className="flex flex-col items-center justify-center bg-white text-black w-14 h-16 md:w-16 md:h-20 rounded-sm">
-      <span className="text-xl md:text-2xl font-bold text-[#cc0000]">
+    <div className="flex flex-col items-center justify-center bg-[#111] text-white w-12 h-14 md:w-16 md:h-20 rounded-md">
+      <span className="text-lg md:text-2xl font-bold text-white">
         {value.toString().padStart(2, '0')}
       </span>
-      <span className="text-[10px] md:text-xs font-semibold text-[#cc0000] uppercase">
+      <span className="text-[9px] md:text-xs font-medium text-white uppercase">
         {label}
       </span>
     </div>
   );
 
   return (
-    <section className="py-16 bg-[#0a0a0a] border-t border-b border-[#1f1f1f]">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="py-10 md:py-16 bg-[#efefef]">
+      <div className="container mx-auto px-3 md:px-4 lg:px-8">
         
-        <div className="flex flex-col items-center justify-center mb-10 gap-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+        <div className="flex flex-col items-center justify-center mb-8 gap-4 text-center">
+          <h2 className="text-[28px] md:text-4xl font-extrabold text-[#111]">
             Limited time Offer
           </h2>
           
           <div className="flex items-center gap-2 md:gap-4">
             <TimeBox value={timeLeft.hours} label="Hour" />
-            <span className="text-white text-2xl font-bold mb-4">:</span>
+            <span className="text-[#111] text-xl font-bold mb-3">:</span>
             <TimeBox value={timeLeft.minutes} label="Min" />
-            <span className="text-white text-2xl font-bold mb-4">:</span>
+            <span className="text-[#111] text-xl font-bold mb-3">:</span>
             <TimeBox value={timeLeft.seconds} label="Sec" />
           </div>
         </div>
@@ -74,7 +74,7 @@ export const FlashSale = () => {
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {flashSaleProducts.map((product, index) => (
-            <div key={`${product.id}-${index}`} className="w-[180px] md:w-[260px] snap-start flex-shrink-0">
+            <div key={`${product.id}-${index}`} className="w-[170px] md:w-[260px] snap-start flex-shrink-0">
               <ProductCard product={product} />
             </div>
           ))}

@@ -22,7 +22,7 @@ useEffect(() => {
 window.scrollTo(0, 0);
 }, []);
 
-return ( <div className="min-h-screen bg-[#0f0f0f] py-6 text-white">
+return ( <div className="min-h-screen bg-white py-6 text-white">
 
   <div className="container mx-auto px-4 max-w-6xl">
 

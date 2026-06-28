@@ -45,16 +45,19 @@ export const Navbar = () => {
   return (
     <>
       {/* Announcement Bar */}
-      <div className="
-bg-[#cc0000]
-text-white
-text-xs
-font-semibold
-tracking-wide
-uppercase
-py-1.5
-text-center
-">
+      <div
+  className="
+  bg-[#e30613]
+  h-[27px]
+  flex
+  items-center
+  justify-center
+  text-white
+  text-[10px]
+  font-normal
+  tracking-[0.02em]
+  "
+>
   <span>☀️ Summer's Ending, Savings Aren't! B2G2 FREE</span>
 </div>
       <header 
@@ -64,8 +67,17 @@ text-center
 : 'bg-white border-b border-gray-200'
         }`}
       >
-        <div className="max-w-[1400px] mx-auto
-px-4 lg:px-8 h-[58px] flex items-center justify-between">
+        <div className="
+max-w-[1400px]
+mx-auto
+px-4
+lg:px-8
+h-[72px]
+lg:h-[58px]
+flex
+items-center
+justify-between
+">
           
           {/* Left: Mobile Menu (Mobile) / Nav Links (Desktop) */}
           <div className="flex items-center lg:w-1/3">
@@ -73,7 +85,11 @@ px-4 lg:px-8 h-[58px] flex items-center justify-between">
               className="lg:hidden text-black hover:text-[#cc0000] transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
             >
-             <FiMenu size={34} strokeWidth={1.3} />
+             <FiMenu
+  size={32}
+  strokeWidth={1.8}
+  className="text-black"
+/>
             </button>
 
             {/* Desktop Navigation */}
@@ -98,16 +114,16 @@ px-4 lg:px-8 h-[58px] flex items-center justify-between">
           <div className="flex-shrink-0 flex items-center justify-center lg:w-1/3 absolute left-1/2 -translate-x-1/2 lg:static lg:transform-none">
             <Link to="/" className="flex items-center gap-5 group">
             <img
-  src="/images/logo.webp"
+  src="/images/logo.avif"
   alt="BEARDO"
-  className="h-[42px] w-auto object-contain"
+  className="h-[46px] w-auto object-contain"
 />
               
             </Link>
           </div>
 
           {/* Right: Search, Account & Cart */}
-          <div className="flex items-center justify-end gap-3 lg:gap-5 lg:w-1/3">
+          <div className="flex items-center justify-end gap-5 lg:gap-5 lg:w-1/3">
             {/* Desktop Search Bar */}
             <div className="hidden lg:flex items-center relative group">
               <input 
@@ -178,13 +194,13 @@ transition-all
         </div>
 
         {/* Mobile Search Row Expandable */}
-        <div className="lg:hidden bg-white px-3 pb-4">
+        <div className="lg:hidden bg-white px-6 pb-3">
 
 <div className="relative">
 
 <FiSearch
 className="absolute left-[18px] top-1/2 -translate-y-1/2 text-gray-500"
-size={31}
+size={22}
 />
 
 <input
@@ -195,14 +211,14 @@ onChange={(e)=>setSearchTerm(e.target.value)}
 onKeyDown={handleSearch}
 className="
 w-full
-h-[56px]
+h-[48px]
 rounded-[10px]
 border
 border-[#d9d9d9]
 bg-white
 pl-[58px]
 pr-4
-text-[17px]
+text-[15px]
 font-normal
 outline-none
 placeholder:text-[#8d8d8d]

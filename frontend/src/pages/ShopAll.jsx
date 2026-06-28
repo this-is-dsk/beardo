@@ -24,7 +24,7 @@ const urlSearch = searchParams.get('search') || '';
 
 }, [searchTerm, urlSearch]);
   return (
-    <div className="min-h-screen bg-[#0f0f0f] py-12">
+    <div className="min-h-screen bg-white py-12">
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* Sale Banner */}

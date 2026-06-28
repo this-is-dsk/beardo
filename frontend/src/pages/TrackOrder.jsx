@@ -10,7 +10,7 @@ const TrackOrder = () => {
   };
 
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 py-12 bg-[#0f0f0f]">
+    <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 py-12 bg-white">
       <div className="max-w-md w-full bg-[#111] border border-gray-800 p-8 rounded-sm shadow-xl">
         <h1 className="text-2xl font-bold uppercase tracking-widest text-white mb-2 text-center">Track Order</h1>
         <p className="text-gray-400 text-sm text-center mb-8">Enter your Order ID to track status</p>

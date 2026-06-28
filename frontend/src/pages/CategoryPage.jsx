@@ -74,7 +74,7 @@ const filteredProducts = dummyProducts.filter(
     categoryData[categoryId] || categoryData.beard;
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] py-8">
+    <div className="min-h-screen bg-white py-8">
 
       <div className="container mx-auto px-4 lg:px-8">
 
@@ -88,7 +88,7 @@ const filteredProducts = dummyProducts.filter(
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white uppercase mb-8">
+        <h1 className="text-2xl md:text-4xl font-extrabold text-black uppercase mb-8">
           {category.title}
         </h1>
 

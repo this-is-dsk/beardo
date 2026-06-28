@@ -11,7 +11,7 @@ export const Footer = () => {
           <div>
             <Link to="/" className="inline-block mb-6">
   <img
-    src="/images/logo.webp"
+    src="/images/footer-logo.avif"
     alt="Beardo"
     className="h-12 md:h-14 w-auto"
   />
