@@ -57,6 +57,10 @@ export const HeroBanner = () => {
     <div className="relative w-full h-[382px] md:h-[82vh] bg-white overflow-hidden">
       <Swiper
   modules={[Autoplay, Pagination]}
+  onSlideChange={(swiper) => {
+    swiper.pagination.render();
+    swiper.pagination.update();
+  }}
    observer={true}
   observeParents={true}
   watchSlidesProgress={true}
@@ -74,8 +78,7 @@ export const HeroBanner = () => {
   }}
   pagination={{
   clickable: true,
-  dynamicBullets: false,
-  bulletActiveClass: "swiper-pagination-bullet-active",
+  el: ".hero-pagination",
 }}
   loop={true}
   className="w-full h-full hero-swiper"
@@ -148,6 +151,7 @@ md:px-16
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="hero-pagination"></div>
       <style dangerouslySetInnerHTML={{__html: `
         .hero-swiper .swiper-pagination{
   bottom:18px!important;
