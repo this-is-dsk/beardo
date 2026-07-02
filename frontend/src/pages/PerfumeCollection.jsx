@@ -20,10 +20,10 @@ const PerfumeCollection = () => {
       <div className="container mx-auto px-4 lg:px-8">
         
         <div className="text-center mb-10">
-          <h1 className="text-2xl md:text-4xl font-bold text-white uppercase tracking-wider mb-2">
+          <h1 className="text-2xl md:text-4xl font-bold text-black uppercase tracking-wider mb-2">
             Beardo Luxury Perfume Range
           </h1>
-          <p className="text-gray-400 text-sm md:text-base">
+          <p className="text-black text-sm md:text-base">
             Long-lasting Premium Fragrances
           </p>
         </div>

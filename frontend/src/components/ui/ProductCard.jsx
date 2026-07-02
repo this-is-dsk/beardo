@@ -24,8 +24,8 @@ export const ProductCard = ({ product }) => {
   } = product;
 
   return (
-    <motion.div 
-      className="group relative flex flex-col bg-white border border-[#dcdcdc] rounded-[8px] overflow-hidden shadow-sm"
+    <motion.div
+  className="group relative flex flex-col w-full h-full bg-white border border-[#e5e5e5] rounded-xl overflow-hidden"
       whileHover={{ y: -4, boxShadow: '0 10px 20px -5px rgba(0,0,0,0.5)' }}
       transition={{ duration: 0.2 }}
       onMouseEnter={() => setIsHovered(true)}

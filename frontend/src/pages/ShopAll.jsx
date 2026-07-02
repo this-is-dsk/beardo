@@ -49,11 +49,11 @@ const urlSearch = searchParams.get('search') || '';
 
 </div>
 <div className="mb-10">
-  <h1 className="text-2xl md:text-4xl font-extrabold text-white uppercase leading-tight">
+  <h1 className="text-2xl md:text-4xl font-extrabold text-black uppercase leading-tight">
     END OF SUMMER SALE – BUY 2 GET 2 FREE
   </h1>
 
-  <p className="text-gray-400 mt-2">
+  <p className="text-black mt-2">
     Add any 4 products and unlock Buy 2 Get 2 Free offer
   </p>
 </div>

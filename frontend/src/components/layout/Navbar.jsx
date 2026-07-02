@@ -72,7 +72,7 @@ max-w-[1400px]
 mx-auto
 px-4
 lg:px-8
-h-[72px]
+h-[66px]
 lg:h-[58px]
 flex
 items-center
@@ -116,7 +116,7 @@ justify-between
             <img
   src="/images/logo.avif"
   alt="BEARDO"
-  className="h-[46px] w-auto object-contain"
+  className="h-[42px] w-auto object-contain"
 />
               
             </Link>
@@ -169,15 +169,14 @@ transition-all
               >
                 <FiShoppingCart size={30} />
                 <AnimatePresence>
-                  {getCartCount() > 0 && (
-                    <motion.span 
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                      className="absolute -top-1 -right-1 bg-[#cc0000] border-2 border-[#111] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-pulse shadow-lg"
-                    >
-                      {getCartCount()}
-                    </motion.span>
+                  {(
+                    <motion.span
+  initial={{ scale: 0.9 }}
+  animate={{ scale: 1 }}
+  className="absolute -top-[3px] -right-[5px] bg-[#e30613] text-white text-[10px] font-bold w-[20px] h-[20px] rounded-full flex items-center justify-center"
+>
+  {getCartCount()}
+</motion.span>
                   )}
                 </AnimatePresence>
               </button>
@@ -194,13 +193,13 @@ transition-all
         </div>
 
         {/* Mobile Search Row Expandable */}
-        <div className="lg:hidden bg-white px-6 pb-3">
+        <div className="lg:hidden bg-white px-4 pb-4">
 
 <div className="relative">
 
 <FiSearch
 className="absolute left-[18px] top-1/2 -translate-y-1/2 text-gray-500"
-size={22}
+size={20}
 />
 
 <input
@@ -211,14 +210,14 @@ onChange={(e)=>setSearchTerm(e.target.value)}
 onKeyDown={handleSearch}
 className="
 w-full
-h-[48px]
-rounded-[10px]
+h-[50px]
+rounded-[8px]
 border
 border-[#d9d9d9]
 bg-white
-pl-[58px]
+pl-[50px]
 pr-4
-text-[15px]
+text-[14px]
 font-normal
 outline-none
 placeholder:text-[#8d8d8d]

@@ -54,7 +54,7 @@ const slides = [
 
 export const HeroBanner = () => {
   return (
-    <div className="relative w-full h-[398px] md:h-[82vh] bg-white overflow-hidden">
+    <div className="relative w-full h-[382px] md:h-[82vh] bg-white overflow-hidden">
       <Swiper
   modules={[Autoplay, Pagination]}
   allowTouchMove={true}
@@ -85,7 +85,7 @@ export const HeroBanner = () => {
                 <img 
                   src={slide.imageDesktop} 
                   alt={slide.heading.replace(/<[^>]+>/g, '')}
-                  className="w-full h-full object-cover object-[76%_center] md:object-center"
+                  className="w-full h-full object-cover object-[74%_center] md:object-center"
                 />
               </picture>
               
@@ -105,7 +105,7 @@ flex-col
 justify-end
 md:justify-center
 px-8
-pb-10
+pb-8
 md:px-16
 ">
                 {slide.title && (

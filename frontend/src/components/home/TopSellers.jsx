@@ -34,13 +34,16 @@ export const TopSellers = () => {
           onTabChange={setActiveTab}
         />
 
-        <div 
-          ref={scrollContainerRef}
-          className="flex gap-3 overflow-x-auto mt-6 pb-6 snap-x snap-mandatory custom-scrollbar scroll-smooth"
+        <div
+  ref={scrollContainerRef}
+  className="flex items-stretch gap-3 overflow-x-auto mt-6 pb-6 snap-x snap-mandatory custom-scrollbar scroll-smooth"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {filteredProducts.map((product, index) => (
-            <div key={`${product.id}-${index}`} className="w-[180px] md:w-[260px] snap-start flex-shrink-0">
+            <div
+  key={`${product.id}-${index}`}
+  className="w-[180px] md:w-[260px] snap-start flex-shrink-0 flex"
+>
               <ProductCard product={product} />
             </div>
           ))}
