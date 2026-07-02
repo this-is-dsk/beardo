@@ -17,9 +17,19 @@
 }
 
 /* Custom Swiper Styles */
-.swiper-pagination-bullet {
-  background: white !important;
-  opacity: 0.5 !important;
+
+.hero-swiper .swiper-pagination-bullet{
+  width:10px !important;
+  height:10px !important;
+  border-radius:50% !important;
+  background:#bdbdbd !important;
+  opacity:1 !important;
+  transition:all .3s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active{
+  background:#ffffff !important;
+  transform:scale(1.15);
 }
 
 /* Custom Horizontal Scrollbar */
