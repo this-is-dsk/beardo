@@ -105,7 +105,7 @@ const GodfatherCollection = () => {
 
 {/* Sale Heading */}
 <div className="mb-10">
-  <h1 className="text-2xl md:text-4xl font-bold text-white uppercase tracking-wider mb-2">
+  <h1 className="text-2xl md:text-4xl font-bold text-black uppercase tracking-wider mb-2">
   BEARDO GODFATHER COLLECTION
 </h1>
 </div>

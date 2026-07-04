@@ -22,7 +22,7 @@ useEffect(() => {
 window.scrollTo(0, 0);
 }, []);
 
-return ( <div className="min-h-screen bg-white py-6 text-white">
+return ( <div className="min-h-screen bg-white py-6 text-black">
 
   <div className="container mx-auto px-4 max-w-6xl">
 
@@ -36,7 +36,7 @@ return ( <div className="min-h-screen bg-white py-6 text-white">
   <span className="bg-green-600 px-2 py-1 rounded text-sm font-bold">
     ⭐ 4.61
   </span>
-  <span className="text-gray-400">
+  <span className="text-black">
     574 Reviews
   </span>
 </div>
@@ -50,12 +50,11 @@ return ( <div className="min-h-screen bg-white py-6 text-white">
 
     {/* Price */}
     <div className="mb-8 flex items-center gap-3 flex-wrap">
-
-  <span className="text-4xl font-bold text-white">
-  ₹{amount || 0}
+  <span className="text-3xl font-bold text-black">
+  ₹999
   </span>
 
-  <span className="text-xl text-gray-500 line-through">
+  <span className="text-xl text-black line-through">
     ₹1636
   </span>
 
@@ -88,7 +87,7 @@ return ( <div className="min-h-screen bg-white py-6 text-white">
   WHY CHOOSE US
 </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-4 text-white">
         <p>✓ Made for Men</p>
         <p>✓ Complete Grooming Solution</p>
         <p>✓ Real Products. Real Results.</p>
