@@ -1,56 +1,257 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import TrackingHeader from "../components/tracking/TrackingHeader";
+import DeliveryProgress from "../components/tracking/DeliveryProgress";
+import TrackingMap from "../components/tracking/TrackingMap";
+import TrackingStatus from "../components/tracking/TrackingStatus";
+import TrackingTimeline from "../components/tracking/TrackingTimeline";
+import DeliveryPartner from "../components/tracking/DeliveryPartner";
+import OrderSummary from "../components/tracking/OrderSummary";
 
 const TrackOrder = () => {
-  const [orderId, setOrderId] = useState('');
-  const [tracking, setTracking] = useState(false);
 
-  const handleTrack = (e) => {
-    e.preventDefault();
-    if (orderId) setTracking(true);
+  const { orderId } = useParams();
+
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const trackingSteps = [
+    "Order Confirmed",
+    "Packed",
+    "Shipped",
+    "Out For Delivery",
+    "Delivered"
+  ];
+
+  const getCurrentStep = (status) => {
+
+    switch (status) {
+
+      case "placed":
+        return 0;
+
+      case "processing":
+        return 1;
+
+      case "shipped":
+        return 2;
+
+      case "delivered":
+        return 4;
+
+      default:
+        return 0;
+
+    }
+
   };
 
-  return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 py-12 bg-white">
-      <div className="max-w-md w-full bg-[#111] border border-gray-800 p-8 rounded-sm shadow-xl">
-        <h1 className="text-2xl font-bold uppercase tracking-widest text-white mb-2 text-center">Track Order</h1>
-        <p className="text-gray-400 text-sm text-center mb-8">Enter your Order ID to track status</p>
-        
-        <form onSubmit={handleTrack} className="space-y-4">
-          <input 
-            type="text" 
-            placeholder="Order ID (e.g., ORD-12345)"
-            value={orderId}
-            onChange={(e) => setOrderId(e.target.value)}
-            className="w-full bg-[#1a1a1a] border border-gray-700 p-3 text-white focus:outline-none focus:border-[#cc0000]" 
-          />
-          <button 
-            type="submit"
-            className="w-full bg-[#cc0000] hover:bg-[#aa0000] text-white font-bold py-3 uppercase tracking-widest transition-colors"
-          >
-            Track Now
-          </button>
-        </form>
+  useEffect(() => {
 
-        {tracking && (
-          <div className="mt-10 pt-8 border-t border-gray-800">
-            <h3 className="font-bold text-white mb-6 uppercase">Order Status</h3>
-            <div className="space-y-6 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-700 before:to-transparent">
-              {['Placed', 'Processing', 'Shipped', 'Delivered'].map((step, index) => (
-                <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                  <div className={`flex items-center justify-center w-5 h-5 rounded-full border-4 border-[#111] ${index <= 1 ? 'bg-[#cc0000]' : 'bg-gray-700'} text-gray-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2`}></div>
-                  <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] px-4 py-2 bg-[#1a1a1a] rounded-sm border border-gray-800 shadow">
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className={`font-bold text-sm ${index <= 1 ? 'text-white' : 'text-gray-500'}`}>{step}</h4>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+    const fetchOrder = async () => {
+
+      try {
+
+        const res = await fetch(
+          `https://beardo-e8n0.onrender.com/api/admin/order/${orderId}`
+        );
+
+        const data = await res.json();
+
+        if (data.success) {
+
+          setOrder(data.order);
+
+        }
+
+      } catch (err) {
+
+        console.log(err);
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    };
+
+    fetchOrder();
+
+    const interval = setInterval(fetchOrder,10000);
+
+    return ()=>clearInterval(interval);
+
+  },[orderId]);
+
+  if(loading){
+
+    return(
+
+      <div className="min-h-screen flex items-center justify-center">
+
+        <h2 className="text-xl font-bold">
+
+          Loading Tracking...
+
+        </h2>
+
       </div>
+
+    );
+
+  }
+
+  if(!order){
+
+    return(
+
+      <div className="min-h-screen flex items-center justify-center">
+
+        <h2 className="text-xl font-bold text-red-500">
+
+          Order Not Found
+
+        </h2>
+
+      </div>
+
+    );
+
+  }
+
+  const currentStep = getCurrentStep(order.orderStatus);
+
+  const progress = order.tracking?.progress || 0;
+
+  const location =
+    order.tracking?.currentLocation ||
+    "Beardo Warehouse, Ahmedabad";
+
+  const eta =
+    order.tracking?.eta ||
+    "Tomorrow Before 8 PM";
+
+  const partner =
+    order.tracking?.deliveryBoy || {};
+
+  return (
+
+    <div className="min-h-screen bg-[#f5f5f5] py-8 px-4">
+
+      <div className="max-w-md mx-auto space-y-5">
+
+        <TrackingHeader
+          eta={eta}
+        />
+
+        <DeliveryProgress
+          progress={progress}
+          location={location}
+        />
+
+        <TrackingMap
+          progress={progress}
+        />
+
+        <TrackingStatus
+          progress={progress}
+          location={location}
+          eta={eta}
+        />
+
+        <TrackingTimeline
+          steps={trackingSteps}
+          currentStep={currentStep}
+        />
+
+        <DeliveryPartner
+          currentStep={currentStep}
+          partner={partner}
+        />
+
+        <OrderSummary
+          order={order}
+        />
+        <div className="bg-white rounded-3xl shadow-lg p-6">
+
+          <h2 className="text-xl font-bold text-[#111] mb-5">
+            Order Details
+          </h2>
+
+          <div className="space-y-3">
+
+            <div className="flex justify-between">
+
+              <span className="text-gray-500">
+                Order ID
+              </span>
+
+              <span className="font-bold">
+                {order.orderId}
+              </span>
+
+            </div>
+
+            <div className="flex justify-between">
+
+              <span className="text-gray-500">
+                Customer
+              </span>
+
+              <span className="font-bold">
+                {order.customerName}
+              </span>
+
+            </div>
+
+            <div className="flex justify-between">
+
+              <span className="text-gray-500">
+                Amount
+              </span>
+
+              <span className="font-bold text-[#e30613]">
+                ₹{order.totalAmount}
+              </span>
+
+            </div>
+
+            <div className="flex justify-between">
+
+              <span className="text-gray-500">
+                Payment
+              </span>
+
+              <span className="font-bold uppercase">
+                {order.paymentMethod}
+              </span>
+
+            </div>
+
+            <div className="flex justify-between">
+
+              <span className="text-gray-500">
+                Status
+              </span>
+
+              <span className="font-bold capitalize">
+                {order.orderStatus}
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
+
   );
+
 };
 
 export default TrackOrder;

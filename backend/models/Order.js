@@ -36,10 +36,66 @@ const orderSchema = new mongoose.Schema({
     default: 'pending'
   },
   orderStatus: {
+  type: String,
+  enum: ['placed', 'processing', 'shipped', 'delivered', 'cancelled'],
+  default: 'placed'
+},
+
+tracking: {
+
+  progress: {
+    type: Number,
+    default: 0
+  },
+
+  currentLocation: {
     type: String,
-    enum: ['placed', 'processing', 'shipped', 'delivered', 'cancelled'],
-    default: 'placed'
-  }
+    default: "Beardo Warehouse, Ahmedabad"
+  },
+
+  eta: {
+    type: String,
+    default: "Tomorrow Before 8 PM"
+  },
+
+  courier: {
+    type: String,
+    default: "Blue Dart"
+  },
+
+  deliveryBoy: {
+
+    name: {
+      type: String,
+      default: ""
+    },
+
+    phone: {
+      type: String,
+      default: ""
+    },
+
+    vehicle: {
+      type: String,
+      default: ""
+    },
+
+    otp: {
+      type: String,
+      default: ""
+    }
+
+  },
+
+  history: [
+    {
+      status: String,
+      location: String,
+      time: Date
+    }
+  ]
+
+}
 }, {
   timestamps: true // Automatically handles createdAt and updatedAt
 });

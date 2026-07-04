@@ -58,7 +58,38 @@ const getDashboardStats = async (req, res) => {
 };
 
 // Recent Orders
+const getOrderTracking = async (req, res) => {
 
+  try {
+
+    const order = await Order.findOne({
+  orderId: req.params.orderId
+});
+
+    if (!order) {
+
+      return res.status(404).json({
+        success: false,
+        message: "Order not found"
+      });
+
+    }
+
+    res.json({
+      success: true,
+      order
+    });
+
+  } catch (err) {
+
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+
+  }
+
+};
 const getRecentOrders = async (req, res) => {
 
   try {
@@ -89,7 +120,10 @@ const updateOrderStatus = async (req, res) => {
 
     const { orderId } = req.params;
 
-    const { orderStatus } = req.body;
+    const {
+  orderStatus,
+  tracking
+} = req.body;
 
     const order = await Order.findById(orderId);
 
@@ -105,6 +139,48 @@ const updateOrderStatus = async (req, res) => {
     }
 
     order.orderStatus = orderStatus;
+
+if (req.body.tracking) {
+  order.tracking = req.body.tracking;
+}
+
+    if (tracking) {
+
+  order.tracking.progress =
+    tracking.progress ?? order.tracking.progress;
+
+  order.tracking.currentLocation =
+    tracking.currentLocation ?? order.tracking.currentLocation;
+
+  order.tracking.eta =
+    tracking.eta ?? order.tracking.eta;
+
+  order.tracking.courier =
+    tracking.courier ?? order.tracking.courier;
+
+  order.tracking.deliveryBoy.name =
+    tracking.deliveryBoy?.name ??
+    order.tracking.deliveryBoy.name;
+
+  order.tracking.deliveryBoy.phone =
+    tracking.deliveryBoy?.phone ??
+    order.tracking.deliveryBoy.phone;
+
+  order.tracking.deliveryBoy.vehicle =
+    tracking.deliveryBoy?.vehicle ??
+    order.tracking.deliveryBoy.vehicle;
+
+  order.tracking.deliveryBoy.otp =
+    tracking.deliveryBoy?.otp ??
+    order.tracking.deliveryBoy.otp;
+
+  if (tracking.history) {
+
+    order.tracking.history = tracking.history;
+
+  }
+
+}
 
     await order.save();
 
@@ -135,6 +211,8 @@ module.exports = {
   getDashboardStats,
 
   getRecentOrders,
+
+  getOrderTracking,
 
   updateOrderStatus,
 

@@ -5,12 +5,16 @@ import { useCart } from '../../context/CartContext';
 import { FiSearch, FiUser, FiHeart, FiShoppingCart, FiMenu } from 'react-icons/fi';
 import { MobileMenu } from './MobileMenu';
 import { AccountPanel } from './AccountPanel';
+import OrderSelectionModal from "../account/OrderSelectionModal";
+import { useAuth } from "../../context/AuthContext";
 
 export const Navbar = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAccountPanelOpen, setIsAccountPanelOpen] = useState(false);
+  const [showOrderModal, setShowOrderModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const handleSearch = (e) => {
@@ -231,7 +235,19 @@ placeholder:text-[#8d8d8d]
 
       {/* Side Menus */}
       <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
-      <AccountPanel isOpen={isAccountPanelOpen} onClose={() => setIsAccountPanelOpen(false)} />
+      <AccountPanel
+  isOpen={isAccountPanelOpen}
+  onClose={() => setIsAccountPanelOpen(false)}
+  onTrackOrderClick={() => {
+    setShowOrderModal(true);
+  }}
+/>
+
+<OrderSelectionModal
+  isOpen={showOrderModal}
+  onClose={() => setShowOrderModal(false)}
+  user={user}
+/>
     </>
   );
 };

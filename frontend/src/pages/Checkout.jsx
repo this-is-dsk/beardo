@@ -96,14 +96,31 @@ const Checkout = () => {
 const data = await response.json();
 
 console.log(data);
+const createdOrder = data.order;
     // Simulate API call to create order
     setTimeout(() => {
-      setIsProcessing(false);
-      clearCart();
-      // Generate a mock order ID
-      const mockOrderId = `ORD-${Math.floor(Math.random() * 100000)}`;
-      navigate('/order-success', { state: { orderId: mockOrderId, amount: getCartTotal(), paymentMethod: finalPaymentMethod } });
-    }, 1500);
+
+  setIsProcessing(false);
+
+  clearCart();
+
+  navigate("/order-success", {
+
+    state: {
+
+      orderId: createdOrder.orderId,
+
+      mongoId: createdOrder._id,
+
+      amount: createdOrder.totalAmount,
+
+      paymentMethod: createdOrder.paymentMethod,
+
+    },
+
+  });
+
+}, 1500);
   };
 
   const handlePaymentSelect = (method) => {
@@ -265,20 +282,6 @@ console.log(data);
                       className="w-full flex items-center justify-between p-5 border border-[#333] bg-[#181818] rounded-xl hover:border-[#cc0000] transition-all">
                       <span className="text-white font-bold uppercase tracking-wider">Pay With UPI</span>
                       <span className="text-xs text-[#cc0000] bg-[#cc0000]/10 px-2 py-1 rounded">Recommended</span>
-                    </button>
-                    
-                    <button 
-                      onClick={() => handlePaymentSelect('card')}
-                      className="w-full flex items-center justify-between p-5 border border-[#333] bg-[#181818] rounded-xl hover:border-[#cc0000] transition-all"
-                    >
-                      <span className="text-white font-bold uppercase tracking-wider">Pay With Card</span>
-                    </button>
-                    
-                    <button 
-                      onClick={() => handlePaymentSelect('cod')}
-                      className="w-full flex items-center justify-between p-5 border border-[#333] bg-[#181818] rounded-xl hover:border-[#cc0000] transition-all"
-                    >
-                      <span className="text-white font-bold uppercase tracking-wider">Cash On Delivery</span>
                     </button>
                   </>
                 )}

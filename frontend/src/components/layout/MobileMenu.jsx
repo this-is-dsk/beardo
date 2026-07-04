@@ -94,7 +94,6 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   { name: 'New Launch', path: '/new' },
                   { name: 'Alpha', path: '/alpha' },
                   { name: 'Look Book', path: '/look-book' },
-                  { name: 'Track Order', path: '/track-order' },
                   { name: 'Franchise Enquiry', path: '/franchise' }
                 ].map((link) => (
                   <Link 
@@ -107,6 +106,17 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                     <IoChevronForward className="text-gray-500" />
                   </Link>
                 ))}
+
+                <button
+  onClick={() => setShowOrderModal(true)}
+  className="w-full flex items-center justify-between p-4 border-b border-[#222] text-white hover:text-[#cc0000] transition-colors"
+>
+  <span className="font-semibold uppercase tracking-wider text-sm">
+    Track Order
+  </span>
+
+  <IoChevronForward className="text-gray-500" />
+</button>
               </div>
 
               {/* Bottom Links */}

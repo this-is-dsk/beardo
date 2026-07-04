@@ -5,7 +5,12 @@ import { motion } from 'framer-motion';
 const OrderSuccess = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { orderId, amount, paymentMethod } = location.state || {};
+  const {
+  orderId,
+  mongoId,
+  amount,
+  paymentMethod
+} = location.state || {};
 
   useEffect(() => {
     // If someone tries to access this route directly without an order, redirect home
@@ -55,12 +60,14 @@ const OrderSuccess = () => {
         </div>
 
         <div className="flex flex-col space-y-3">
-          <button 
-            onClick={() => navigate('/track-order')}
-            className="w-full bg-[#cc0000] hover:bg-[#aa0000] text-white font-bold py-4 uppercase tracking-widest transition-colors"
-          >
-            Track Order
-          </button>
+          <button
+  onClick={() =>
+    navigate(`/track-order/${orderId}`)
+  }
+  className="w-full bg-[#cc0000] hover:bg-[#aa0000] text-white font-bold py-4 uppercase tracking-widest transition-colors"
+>
+  Track Order
+</button>
           <button 
             onClick={() => navigate('/shop-all')}
             className="w-full bg-transparent border border-gray-700 hover:border-white text-white font-bold py-4 uppercase tracking-widest transition-colors"

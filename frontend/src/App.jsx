@@ -40,7 +40,7 @@ function App() {
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/order-success" element={<OrderSuccess />} />
                   <Route path="/account" element={<Account />} />
-                  <Route path="/track-order" element={<TrackOrder />} />
+                  <Route path="/track-order/:orderId" element={<TrackOrder />} />
                   {/* Fallback route for other collections */}
                   <Route path="/collections/:categoryId" element={<ShopAll />} />
                   <Route path="/godfather-collection" element={<GodfatherCollection />} />

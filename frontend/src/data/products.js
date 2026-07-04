@@ -2,7 +2,7 @@ export const dummyProducts = [
   {
     id: 1,
     title: "Don Beardo's Beard Growth Pro Kit",
-    price: 999,
+    price: 1,
     originalPrice: 1636,
     discount: 38,
     rating: 4.6,

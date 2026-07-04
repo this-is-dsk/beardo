@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoClose, IoChevronForward } from 'react-icons/io5';
 import { FiUser } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 
-export const AccountPanel = ({ isOpen, onClose }) => {
+export const AccountPanel = ({ isOpen, onClose,onTrackOrderClick }) => {
   const { user, openAuthModal, logout } = useAuth();
   const navigate = useNavigate();
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -86,9 +85,8 @@ export const AccountPanel = ({ isOpen, onClose }) => {
                 <div className="flex flex-col">
                   {[
                     { name: 'Profile', path: '/account' },
-                    { name: 'My Orders', path: '/account' }, // Usually same page, diff tab
-                    { name: 'Track Order', path: '/track-order' },
-                    { name: 'Saved Addresses', path: '/account' }
+  { name: 'My Orders', path: '/account' },
+  { name: 'Saved Addresses', path: '/account' }
                   ].map((link) => (
                     <Link 
                       key={link.name}
@@ -100,7 +98,26 @@ export const AccountPanel = ({ isOpen, onClose }) => {
                       <IoChevronForward className="text-gray-500" />
                     </Link>
                   ))}
-                  
+                  <button
+  onClick={() => {
+
+    onClose();
+
+    onTrackOrderClick();
+
+  }}
+  className="w-full flex items-center justify-between p-4 border-b border-[#222] text-white hover:text-[#cc0000] transition-colors"
+>
+
+  <span className="font-semibold uppercase tracking-wider text-sm">
+
+    Track Order
+
+  </span>
+
+  <IoChevronForward className="text-gray-500" />
+
+</button>
                   {user.role === 'admin' && (
                     <Link 
                       to="/admin"
@@ -128,6 +145,7 @@ export const AccountPanel = ({ isOpen, onClose }) => {
           </motion.div>
         </div>
       )}
+    
     </AnimatePresence>
   );
 };

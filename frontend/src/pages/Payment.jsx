@@ -8,7 +8,7 @@ const { amount, cartItems, address } = location.state || {};
 
 const merchantName = "Beardo";
 
-const upiId = "9352965340@superyes";
+const upiId = "akhedaa.wallet@phonepe";
 
 const upiUrl =
   `upi://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${amount}&cu=INR`;
@@ -286,9 +286,7 @@ d="M9 5l7 7-7 7"
 
   <div className="flex justify-between text-gray-400">
 
-    <span>Subtotal</span>
-
-    <span className="text-white">₹999</span>
+  
 
   </div>
 

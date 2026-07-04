@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Navigate } from 'react-router-dom';
+import TrackingModal from "../components/admin/TrackingModal";
 
 const AdminDashboard = () => {
 
@@ -13,6 +14,85 @@ const AdminDashboard = () => {
 });
 
 const [recentOrders, setRecentOrders] = useState([]);
+
+const [selectedOrder, setSelectedOrder] = useState(null);
+
+const [trackingForm, setTrackingForm] = useState({
+  progress: 0,
+  currentLocation: "Beardo Warehouse, Ahmedabad",
+  eta: "Tomorrow Before 8 PM",
+  courier: "Blue Dart",
+  deliveryBoy: {
+    name: "",
+    phone: "",
+    vehicle: "",
+    otp: "",
+  },
+});
+
+const handleSaveTracking = async () => {
+
+  if (!selectedOrder) return;
+
+  try {
+
+    const res = await fetch(
+
+      `https://beardo-e8n0.onrender.com/api/admin/order/${selectedOrder._id}`,
+
+      {
+
+        method: "PUT",
+
+        headers: {
+
+          "Content-Type": "application/json",
+
+        },
+
+        body: JSON.stringify({
+
+          orderStatus: selectedOrder.orderStatus,
+
+          tracking: trackingForm,
+
+        }),
+
+      }
+
+    );
+
+    const data = await res.json();
+
+    if (data.success) {
+
+      alert("Tracking Updated Successfully ✅");
+
+      setRecentOrders((prev) =>
+        prev.map((item) =>
+          item._id === selectedOrder._id
+            ? { ...item, tracking: trackingForm }
+            : item
+        )
+      );
+
+      setSelectedOrder(null);
+
+    } else {
+
+      alert(data.message);
+
+    }
+
+  } catch (err) {
+
+    console.log(err);
+
+    alert("Something went wrong");
+
+  }
+
+};
 
 useEffect(() => {
 
@@ -158,7 +238,9 @@ useEffect(() => {
           <th className="text-left p-4 text-gray-300">
             Date
           </th>
-
+<th className="text-left p-4 text-gray-300">
+  Tracking
+</th>
         </tr>
 
       </thead>
@@ -251,6 +333,57 @@ useEffect(() => {
               {new Date(order.createdAt).toLocaleDateString()}
 
             </td>
+            <td className="p-4">
+
+  <button
+  onClick={() => {
+
+    setSelectedOrder(order);
+
+    setTrackingForm({
+
+      progress: order.tracking?.progress || 0,
+
+      currentLocation:
+        order.tracking?.currentLocation ||
+        "Beardo Warehouse, Ahmedabad",
+
+      eta:
+        order.tracking?.eta ||
+        "Tomorrow Before 8 PM",
+
+      courier:
+        order.tracking?.courier ||
+        "Blue Dart",
+
+      deliveryBoy: {
+
+        name:
+          order.tracking?.deliveryBoy?.name || "",
+
+        phone:
+          order.tracking?.deliveryBoy?.phone || "",
+
+        vehicle:
+          order.tracking?.deliveryBoy?.vehicle || "",
+
+        otp:
+          order.tracking?.deliveryBoy?.otp || ""
+
+      }
+
+    });
+
+  }}
+
+  className="bg-[#e30613] hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
+>
+
+  Manage Tracking
+
+</button>
+
+</td>
 
           </tr>
 
@@ -264,7 +397,13 @@ useEffect(() => {
   </div>
 
 </div>
-
+<TrackingModal
+  isOpen={selectedOrder !== null}
+  onClose={() => setSelectedOrder(null)}
+  trackingForm={trackingForm}
+  setTrackingForm={setTrackingForm}
+  onSave={handleSaveTracking}
+/>
     </div>
   );
 };

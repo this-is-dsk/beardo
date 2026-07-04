@@ -59,8 +59,7 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-6 tracking-wider uppercase">Contact Us</h4>
             <ul className="space-y-3 mb-6">
-              <li className="text-gray-400 text-sm">Email: dkyadav@gmail.com</li>
-              <li className="text-gray-400 text-sm">Phone: 9352965340</li>
+              <li className="text-gray-400 text-sm">Email: beardo@gmail.com</li>
               <li className="text-gray-400 text-sm">Working Hours: 10AM to 7PM</li>
             </ul>
             <div className="flex gap-3 mt-4">
