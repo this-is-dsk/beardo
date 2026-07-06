@@ -142,40 +142,87 @@ const Checkout = () => {
               <form onSubmit={handleProceedToPayment} className="p-6 space-y-6">
                 {/* Customer Information */}
                 <div>
-                  <h3 className="text-white text-sm font-semibold mb-3 uppercase tracking-wider text-gray-400">Customer Information</h3>
-                  <div className="space-y-4">
-                    <div className="flex gap-4">
-                      <input
-  required
-  type="text"
-  name="fullName"
-  value={formData.fullName}
-  onChange={handleInputChange}
-  placeholder="Full Name"
-  className="w-full bg-[#181818] border border-[#333] rounded-xl px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all"
+
+<h3 className="text-white text-xs font-bold uppercase tracking-[0.25em] text-gray-400 mb-5">
+Customer Information
+</h3>
+
+<div className="space-y-5">
+
+<div>
+
+<label className="block text-sm text-gray-400 mb-2">
+Full Name
+</label>
+
+<input
+required
+type="text"
+name="fullName"
+value={formData.fullName}
+onChange={handleInputChange}
+placeholder="Enter your full name"
+className="w-full h-14 bg-[#181818] border border-[#333] rounded-2xl px-5 text-white placeholder:text-gray-500 focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 transition-all outline-none"
 />
-                      <input required type="tel" name="mobile" value={formData.mobile} onChange={handleInputChange} placeholder="Mobile Number" className="w-1/2 bg-[#181818] border border-[#333] rounded-xl px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all" />
-                      <input required type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email Address" className="w-1/2 bg-[#181818] border border-[#333] rounded-xl px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all"/>
-                    </div>
-                  </div>
-                </div>
+
+</div>
+
+<div>
+
+<label className="block text-sm text-gray-400 mb-2">
+Mobile Number
+</label>
+
+<input
+required
+type="tel"
+name="mobile"
+value={formData.mobile}
+onChange={handleInputChange}
+placeholder="+91 9876543210"
+className="w-full h-14 bg-[#181818] border border-[#333] rounded-2xl px-5 text-white placeholder:text-gray-500 focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 transition-all outline-none"
+/>
+
+</div>
+
+<div>
+
+<label className="block text-sm text-gray-400 mb-2">
+Email Address
+</label>
+
+<input
+required
+type="email"
+name="email"
+value={formData.email}
+onChange={handleInputChange}
+placeholder="Enter your email"
+className="w-full h-14 bg-[#181818] border border-[#333] rounded-2xl px-5 text-white placeholder:text-gray-500 focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 transition-all outline-none"
+/>
+
+</div>
+
+</div>
+
+</div>
 
                 {/* Delivery Address */}
                 <div>
-                  <h3 className="text-white text-sm font-semibold mb-3 uppercase tracking-wider text-gray-400">Delivery Address</h3>
+                  <h3 className="text-white text-xs font-bold uppercase tracking-[0.25em] text-gray-400 mb-5">Delivery Address</h3>
                   <div className="space-y-4">
                     <input required type="text" name="addressLine" value={formData.addressLine} onChange={handleInputChange} placeholder="Address Line (House No, Building, Street)"
-                    className="w-full bg-[#181818] border border-[#333] rounded-lg px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all"  />
-                    <input type="text" name="landmark" value={formData.landmark} onChange={handleInputChange} placeholder="Landmark (Optional)" className="w-full bg-[#181818] border border-[#333] rounded-xl px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all" />
-                    <div className="flex gap-4">
+                    className="w-full bg-[#181818] border border-[#333] rounded-2xl px-5 h-14 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all"  />
+                    <input type="text" name="landmark" value={formData.landmark} onChange={handleInputChange} placeholder="Landmark (Optional)" className="w-full bg-[#181818] border border-[#333] rounded-2xl px-5 h-14 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <input required type="text" name="city" value={formData.city} onChange={handleInputChange} placeholder="City" className="w-full bg-[#181818] border border-[#333] rounded-xl px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all" />
                       <input required type="text" name="state" value={formData.state} onChange={handleInputChange} placeholder="State" className="w-full bg-[#181818] border border-[#333] rounded-xl px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all" />
                     </div>
-                    <input required type="text" name="pincode" value={formData.pincode} onChange={handleInputChange} placeholder="Pincode" className="w-1/2 bg-[#181818] border border-[#333] rounded-xl px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all" />
+                    <input required type="text" name="pincode" value={formData.pincode} onChange={handleInputChange} placeholder="Pincode" className="w-full md:w-1/2 bg-[#181818] border border-[#333] rounded-xl px-4 py-4 text-white focus:border-[#cc0000] focus:ring-2 focus:ring-[#cc0000]/20 outline-none transition-all" />
                   </div>
                 </div>
                 
-                <button type="submit" className="bg-[#cc0000] hover:bg-[#aa0000] text-white py-4 rounded-xl font-bold uppercase w-full mt-6 tracking-widest shadow-lg shadow-[#cc0000]/30 transition-all hover:scale-[1.02]">
+                <button type="submit" className="w-full h-14 bg-gradient-to-r from-[#cc0000] to-[#990000] hover:from-[#dd0000] hover:to-[#aa0000] rounded-2xl text-white font-bold uppercase tracking-[0.18em] shadow-xl shadow-red-900/30 transition-all duration-300 hover:scale-[1.02]">
                   Continue to Payment
                 </button>
               </form>
