@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
 const Checkout = () => {
-  const { cartItems, getCartTotal, clearCart } = useCart();
+  const { cartItems, getCartTotal } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
   
@@ -20,8 +20,6 @@ const Checkout = () => {
     pincode: ''
   });
   
-  const [selectedPayment, setSelectedPayment] = useState(''); // 'upi', 'card', 'cod'
-  const [isProcessing, setIsProcessing] = useState(false);
 
   if (!user) {
     return <div className="min-h-[50vh] flex items-center justify-center text-gray-400">Please login to checkout.</div>;
@@ -210,15 +208,6 @@ const Checkout = () => {
         Recommended
       </span>
     </button>
-
-    {isProcessing && (
-      <div className="text-center py-4">
-        <div className="w-6 h-6 border-2 border-[#cc0000] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-        <span className="text-sm text-gray-400">
-          Processing Order...
-        </span>
-      </div>
-    )}
 
   </div>
 ) : (

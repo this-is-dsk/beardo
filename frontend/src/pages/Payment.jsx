@@ -35,7 +35,29 @@ const openRazorpay = async () => {
       return;
 
     }
+if (!user) {
 
+  alert("User not found");
+
+  return;
+
+}
+
+if (!address) {
+
+  alert("Address not found");
+
+  return;
+
+}
+
+if (!cartItems || cartItems.length === 0) {
+
+  alert("Cart is empty");
+
+  return;
+
+}
     // Abhi yahin rukenge.
     const options = {
   key: import.meta.env.VITE_RAZORPAY_KEY_ID, 
@@ -52,7 +74,15 @@ const openRazorpay = async () => {
 notes: {
     address: address?.addressLine,
   },
+modal: {
 
+  ondismiss: function () {
+
+    console.log("Payment Cancelled");
+
+  }
+
+},
   handler: async function (response) {
 
     console.log(response);
@@ -227,13 +257,13 @@ razorpay.on("payment.failed", function (response) {
 
   alert("Payment Failed");
 
-console.log(response.error);
+  console.log(response.error);
 
 });
 
 razorpay.open();
 
- } catch (err) {
+} catch (err) {
 
   console.error(err);
 
