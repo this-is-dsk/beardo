@@ -66,48 +66,8 @@ const Checkout = () => {
 });
 
 };
-    const finalPaymentMethod = paymentMethodOverride || selectedPayment;
-    const response = await fetch('https://beardo-e8n0.onrender.com/api/orders/create', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(orderData),
-});
 
-const data = await response.json();
-
-console.log(data);
-const createdOrder = data.order;
-    // Simulate API call to create order
-    setTimeout(() => {
-
-  setIsProcessing(false);
-
-  clearCart();
-
-  navigate("/order-success", {
-
-    state: {
-
-      orderId: createdOrder.orderId,
-
-      mongoId: createdOrder._id,
-
-      amount: createdOrder.totalAmount,
-
-      paymentMethod: createdOrder.paymentMethod,
-
-    },
-
-  });
-
-}, 1500);
-  };
-
-  const handlePaymentSelect = (method) => {
-    setSelectedPayment(method);
-    const handlePaymentSelect = () => {
+  const handlePaymentSelect = () => {
 
   handlePlaceOrder();
 

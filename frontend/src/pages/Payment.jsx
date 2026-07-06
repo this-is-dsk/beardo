@@ -182,10 +182,7 @@ localStorage.removeItem("cart");
 clearCart();
 
 window.dispatchEvent(new Event("storage"));
-
 window.dispatchEvent(new Event("cartUpdated"));
-
-window.dispatchEvent(new Event("storage"));
 
 // -------------------------
 // SUCCESS PAGE
@@ -236,15 +233,13 @@ console.log(response.error);
 
 razorpay.open();
 
-  } catch (err) {
+ } catch (err) {
 
   console.error(err);
 
   alert("Something went wrong while processing payment.");
 
 }
-
-  }
 
 };
   return (
@@ -597,5 +592,5 @@ d="M9 5l7 7-7 7"
 
     </div>
   );
-
+};
 export default Payment;
