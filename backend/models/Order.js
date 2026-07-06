@@ -29,7 +29,27 @@ const orderSchema = new mongoose.Schema({
     state: { type: String, required: true },
     pincode: { type: String, required: true }
   },
-  paymentMethod: { type: String, required: true }, // e.g., 'UPI', 'CARD', 'COD'
+  paymentMethod: { type: String, required: true }, 
+  // e.g., 'UPI', 'CARD', 'COD'
+
+  // Razorpay Payment Details
+
+razorpayOrderId: {
+  type: String,
+  default: "",
+},
+
+razorpayPaymentId: {
+  type: String,
+  default: "",
+  unique: true,
+  sparse: true,
+},
+
+razorpaySignature: {
+  type: String,
+  default: "",
+},
   paymentStatus: {
     type: String,
     enum: ['pending', 'paid', 'failed'],

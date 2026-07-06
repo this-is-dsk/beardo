@@ -1,20 +1,250 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Payment = () => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const { clearCart } = useCart();
 
-const { amount, cartItems, address } = location.state || {};
+const { amount, cartItems, address, user } = location.state || {};
 
-const merchantName = "Beardo";
+const openRazorpay = async () => {
 
-const upiId = "akhedaa.wallet@phonepe";
+  try {
 
-const upiUrl =
-  `upi://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${amount}&cu=INR`;
-  const openUpi = () => {
+    const res = await fetch(
+      "https://beardo-e8n0.onrender.com/api/payment/create-order",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount,
+        }),
+      }
+    );
 
-  window.location.href = upiUrl;
+    const data = await res.json();
+
+    if (!data.success) {
+
+      alert("Unable to create payment.");
+
+      return;
+
+    }
+
+    // Abhi yahin rukenge.
+    const options = {
+  key: import.meta.env.VITE_RAZORPAY_KEY_ID, 
+  amount: data.order.amount,
+  currency: data.order.currency,
+  name: "Beardo",
+  description: "Order Payment",
+  order_id: data.order.id,
+  prefill: {
+  name: address?.fullName,
+  email: address?.email,
+  contact: address?.mobile,
+},
+notes: {
+    address: address?.addressLine,
+  },
+
+  handler: async function (response) {
+
+    console.log(response);
+
+    const verifyRes = await fetch(
+      "https://beardo-e8n0.onrender.com/api/payment/verify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(response),
+      }
+    );
+
+    const verifyData = await verifyRes.json();
+
+if (!verifyData.success) {
+
+  alert("Payment Verification Failed");
+
+  return;
+
+}
+
+// ----------------------------------
+// CREATE ORDER AFTER PAYMENT SUCCESS
+// ----------------------------------
+
+const orderData = {
+
+  orderId: `ORD-${Date.now()}`,
+
+  userId: user._id,
+
+  customerName: address.fullName,
+
+  email: address.email,
+
+  phone: address.mobile,
+
+  items: cartItems.map(item => ({
+
+    productId: item.id,
+
+    title: item.title,
+
+    quantity: item.quantity,
+
+    price: item.price,
+
+    image: item.image
+
+  })),
+
+  subtotal: amount,
+
+  totalAmount: amount,
+
+  address: {
+
+    fullName: address.fullName,
+
+    email: address.email,
+
+    phone: address.mobile,
+
+    addressLine: address.addressLine,
+
+    landmark: address.landmark,
+
+    city: address.city,
+
+    state: address.state,
+
+    pincode: address.pincode
+
+  },
+
+  paymentMethod: "UPI",
+
+  paymentStatus: "paid",
+
+  razorpayOrderId: response.razorpay_order_id,
+
+razorpayPaymentId: response.razorpay_payment_id,
+
+razorpaySignature: response.razorpay_signature,
+
+};
+
+const saveOrder = await fetch(
+
+  "https://beardo-e8n0.onrender.com/api/orders/create",
+
+  {
+
+    method: "POST",
+
+    headers: {
+
+      "Content-Type": "application/json"
+
+    },
+
+    body: JSON.stringify(orderData)
+
+  }
+
+);
+
+const savedData = await saveOrder.json();
+
+if (!savedData.success) {
+
+  alert("Order Saving Failed");
+
+  return;
+
+}
+
+// -------------------------
+// CLEAR CART
+// -------------------------
+
+localStorage.removeItem("cart");
+clearCart();
+
+window.dispatchEvent(new Event("storage"));
+
+window.dispatchEvent(new Event("cartUpdated"));
+
+window.dispatchEvent(new Event("storage"));
+
+// -------------------------
+// SUCCESS PAGE
+// -------------------------
+
+navigate("/order-success", {
+
+  state: {
+
+    orderId: savedData.order.orderId,
+
+    mongoId: savedData.order._id,
+
+    amount: savedData.order.totalAmount,
+
+    paymentMethod: "UPI",
+
+    paymentId: response.razorpay_payment_id
+
+  }
+
+});
+
+  },
+modal: {
+
+  ondismiss: function () {
+
+    alert("Payment Cancelled");
+
+  }
+
+},
+  theme: {
+    color: "#cc0000",
+  },
+};
+
+const razorpay = new window.Razorpay(options);
+
+razorpay.on("payment.failed", function (response) {
+
+  alert("Payment Failed");
+
+console.log(response.error);
+
+});
+
+razorpay.open();
+
+  } catch (err) {
+
+  console.error(err);
+
+  alert("Something went wrong while processing payment.");
+
+}
+
+  }
 
 };
   return (
@@ -71,7 +301,7 @@ const upiUrl =
 <div className="space-y-4">
 
 <button
-onClick={openUpi}
+onClick={openRazorpay}
 className="w-full bg-[#171717] border border-[#353535] hover:border-[#6f3ff5] hover:bg-[#1d1d1d] transition-all duration-300 rounded-2xl p-5 flex items-center justify-between group"
 >
 
@@ -116,7 +346,7 @@ d="M9 5l7 7-7 7"
 </button>
 
 <button
-onClick={openUpi}
+onClick={openRazorpay}
 className="w-full bg-[#171717] border border-[#353535] hover:border-[#4285F4] hover:bg-[#1d1d1d] transition-all duration-300 rounded-2xl p-5 flex items-center justify-between group"
 >
 
@@ -161,7 +391,7 @@ d="M9 5l7 7-7 7"
 </button>
 
 <button
-onClick={openUpi}
+onClick={openRazorpay}
 className="w-full bg-[#171717] border border-[#353535] hover:border-[#00BAF2] hover:bg-[#1d1d1d] transition-all duration-300 rounded-2xl p-5 flex items-center justify-between group"
 >
 

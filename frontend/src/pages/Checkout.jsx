@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-import { UpiPaymentHandler } from '../components/checkout/UpiPaymentHandler';
 
 const Checkout = () => {
   const { cartItems, getCartTotal, clearCart } = useCart();
@@ -22,7 +21,6 @@ const Checkout = () => {
   });
   
   const [selectedPayment, setSelectedPayment] = useState(''); // 'upi', 'card', 'cod'
-  const [showUpiModal, setShowUpiModal] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
   if (!user) {
@@ -49,40 +47,24 @@ const Checkout = () => {
     setStep(2);
   };
 
-  const handlePlaceOrder = async (paymentStatus = 'pending', paymentMethodOverride = null) => {
-    setIsProcessing(true);
-    const orderData = {
-  orderId: `ORD-${Date.now()}`,
-  userId: user._id,
+  const handlePlaceOrder = () => {
 
-  customerName: formData.fullName,
-  email: formData.email,
-  phone: formData.mobile,
+  navigate("/payment", {
 
-  items: cartItems.map(item => ({
-    productId: item.id,
-    title: item.title,
-    quantity: item.quantity,
-    price: item.price,
-    image: item.image,
-  })),
+  state: {
 
-  subtotal: getCartTotal(),
-  totalAmount: getCartTotal(),
+    amount: getCartTotal(),
 
-  address: {
-    fullName: formData.fullName,
-    email: formData.email,
-    phone: formData.mobile,
-    addressLine: formData.addressLine,
-    landmark: formData.landmark,
-    city: formData.city,
-    state: formData.state,
-    pincode: formData.pincode,
+    cartItems,
+
+    address: formData,
+
+    user,
+
   },
 
-  paymentMethod: paymentMethodOverride || selectedPayment,
-  paymentStatus,
+});
+
 };
     const finalPaymentMethod = paymentMethodOverride || selectedPayment;
     const response = await fetch('https://beardo-e8n0.onrender.com/api/orders/create', {
@@ -125,25 +107,11 @@ const createdOrder = data.order;
 
   const handlePaymentSelect = (method) => {
     setSelectedPayment(method);
-    if (method === 'upi') {
+    const handlePaymentSelect = () => {
 
-  navigate('/payment', {
-    state: {
-      amount: getCartTotal(),
-      cartItems,
-      address: formData,
-    }
-  });
+  handlePlaceOrder();
 
-
-    } else if (method === 'cod') {
-      handlePlaceOrder('pending', 'cod');
-    } else if (method === 'card') {
-      // Mock card flow
-      alert("Card payment gateway integration pending. Placing order as mock successful.");
-      handlePlaceOrder('paid', 'card');
-    }
-  };
+};
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl min-h-screen">
@@ -268,34 +236,36 @@ const createdOrder = data.order;
               <h2 className="text-lg font-bold uppercase text-white">2. Payment Method</h2>
             </div>
             {step === 2 ? (
-              <div className="p-6 space-y-4">
-                {showUpiModal ? (
-                  <UpiPaymentHandler 
-                    amount={getCartTotal()} 
-                    onSuccess={(txnId) => handlePlaceOrder('paid', 'upi')}
-                    onCancel={() => setShowUpiModal(false)}
-                  />
-                ) : (
-                  <>
-                    <button 
-                      onClick={() => handlePaymentSelect('upi')}
-                      className="w-full flex items-center justify-between p-5 border border-[#333] bg-[#181818] rounded-xl hover:border-[#cc0000] transition-all">
-                      <span className="text-white font-bold uppercase tracking-wider">Pay With UPI</span>
-                      <span className="text-xs text-[#cc0000] bg-[#cc0000]/10 px-2 py-1 rounded">Recommended</span>
-                    </button>
-                  </>
-                )}
-                
-                {isProcessing && (
-                  <div className="text-center py-4">
-                    <div className="w-6 h-6 border-2 border-[#cc0000] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-                    <span className="text-sm text-gray-400">Processing Order...</span>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="p-6 text-gray-500 text-sm">Please complete shipping details first.</div>
-            )}
+  <div className="p-6 space-y-4">
+
+    <button
+      onClick={handlePaymentSelect}
+      className="w-full flex items-center justify-between p-5 border border-[#333] bg-[#181818] rounded-xl hover:border-[#cc0000] transition-all"
+    >
+      <span className="text-white font-bold uppercase tracking-wider">
+        Pay With UPI
+      </span>
+
+      <span className="text-xs text-[#cc0000] bg-[#cc0000]/10 px-2 py-1 rounded">
+        Recommended
+      </span>
+    </button>
+
+    {isProcessing && (
+      <div className="text-center py-4">
+        <div className="w-6 h-6 border-2 border-[#cc0000] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+        <span className="text-sm text-gray-400">
+          Processing Order...
+        </span>
+      </div>
+    )}
+
+  </div>
+) : (
+  <div className="p-6 text-gray-500 text-sm">
+    Please complete shipping details first.
+  </div>
+)}
           </div>
 
         </div>
