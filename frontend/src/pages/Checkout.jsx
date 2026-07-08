@@ -40,10 +40,18 @@ const Checkout = () => {
   };
 
   const handleProceedToPayment = (e) => {
-    e.preventDefault();
-    // Basic validation could go here
-    setStep(2);
-  };
+
+  e.preventDefault();
+
+  navigate("/payment", {
+    state: {
+      amount: getCartTotal(),
+      cartItems,
+      address: formData,
+    },
+  });
+
+};
 
   const handlePlaceOrder = () => {
 
@@ -235,34 +243,7 @@ className="w-full h-14 bg-[#181818] border border-[#333] rounded-2xl px-5 text-w
             )}
           </div>
 
-          {/* Step 2: Payment */}
-          <div className={`border ${step === 2 ? 'border-[#cc0000]' : 'border-gray-800'} bg-[#111] rounded-sm overflow-hidden`}>
-            <div className="p-4 bg-[#1a1a1a] border-b border-gray-800">
-              <h2 className="text-lg font-bold uppercase text-white">2. Payment Method</h2>
-            </div>
-            {step === 2 ? (
-  <div className="p-6 space-y-4">
-
-    <button
-      onClick={handlePaymentSelect}
-      className="w-full flex items-center justify-between p-5 border border-[#333] bg-[#181818] rounded-xl hover:border-[#cc0000] transition-all"
-    >
-      <span className="text-white font-bold uppercase tracking-wider">
-        Pay With UPI
-      </span>
-
-      <span className="text-xs text-[#cc0000] bg-[#cc0000]/10 px-2 py-1 rounded">
-        Recommended
-      </span>
-    </button>
-
-  </div>
-) : (
-  <div className="p-6 text-gray-500 text-sm">
-    Please complete shipping details first.
-  </div>
-)}
-          </div>
+          
 
         </div>
 
