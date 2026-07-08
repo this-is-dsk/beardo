@@ -36,19 +36,16 @@ const orderSchema = new mongoose.Schema({
 
 razorpayOrderId: {
   type: String,
-  default: "",
 },
 
 razorpayPaymentId: {
   type: String,
-  default: "",
   unique: true,
   sparse: true,
 },
 
 razorpaySignature: {
   type: String,
-  default: "",
 },
   paymentStatus: {
     type: String,

@@ -1,14 +1,16 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Payment = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { clearCart } = useCart();
+    const { user } = useAuth();
 
-const { amount, cartItems, address, user } = location.state || {};
-
+const { amount, cartItems, address } = location.state || {};
+console.log(user);
 const openRazorpay = async () => {
 
   try {
@@ -60,7 +62,7 @@ if (!cartItems || cartItems.length === 0) {
 }
     // Abhi yahin rukenge.
     const options = {
-  key: import.meta.env.VITE_RAZORPAY_KEY_ID, 
+  key: import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_live_TA3gjVGUq69KAa", 
   amount: data.order.amount,
   currency: data.order.currency,
   name: "Beardo",
@@ -100,7 +102,7 @@ modal: {
 
     const verifyData = await verifyRes.json();
 
-if (!verifyData.success) {
+if (!verifyRes.ok || !verifyData.success) {
 
   alert("Payment Verification Failed");
 
@@ -126,7 +128,7 @@ const orderData = {
 
   items: cartItems.map(item => ({
 
-    productId: item.id,
+    productId: item.id || item._id,
 
     title: item.title,
 
@@ -196,9 +198,13 @@ const saveOrder = await fetch(
 
 const savedData = await saveOrder.json();
 
-if (!savedData.success) {
+console.log("ORDER RESPONSE:", savedData);
 
-  alert("Order Saving Failed");
+if (!saveOrder.ok || !savedData.success) {
+
+  console.error(savedData);
+
+  alert(savedData.message || "Order Saving Failed");
 
   return;
 
@@ -237,15 +243,7 @@ navigate("/order-success", {
 });
 
   },
-modal: {
-
-  ondismiss: function () {
-
-    alert("Payment Cancelled");
-
-  }
-
-},
+  
   theme: {
     color: "#cc0000",
   },

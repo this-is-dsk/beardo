@@ -42,12 +42,13 @@ const Checkout = () => {
   const handleProceedToPayment = (e) => {
 
   e.preventDefault();
-
+console.log("Checkout user:", user);
   navigate("/payment", {
     state: {
       amount: getCartTotal(),
       cartItems,
       address: formData,
+       user,
     },
   });
 
